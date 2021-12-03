@@ -1,0 +1,2768 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{amsfonts} %para las letras bonitas, por ejemplo numeros reales R
+\usepackage{apalike}
+\usepackage{mathrsfs}
+\usepackage[toc,page]{appendix}
+\usepackage{dsfont}
+%\textheight = 19cm
+%\textwidth = 15cm
+%\topmargin = 0cm
+\oddsidemargin= 1cm
+
+
+\usepackage{listings}
+\renewcommand{\lstlistlistingname}{Lista de Códigos}
+\renewcommand{\lstlistingname}{Rutina}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=30mm,
+	right=25mm,
+	top=25mm,
+	bottom=25mm,
+}
+\renewcommand{\baselinestretch }{2}
+\usepackage{times}
+
+\usepackage{enumitem} %%listas con bullets de letras
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%comando thead para encabezado de tablas
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref}
+
+\usepackage{float}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%funcion para añadir otro nivel de seccion
+%%%  i.e: \subsubsubsection{}
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%formato para las figuras
+%
+\newcommand{\addFigureFormated}[1]{\includegraphics[height=0.6\textheight]{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\section{Personalización de documentos}%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[most]{tcolorbox}
+\newtcolorbox{mybox}{colback=blue!5!white,colframe=blue!75!black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{array}
+
+\newenvironment{conditions}
+{\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+	{\end{tabular}\par\vspace{\belowdisplayskip}}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%agrega lista de figuras, lista de codigos, lista de cuadros al toc
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	\begin{titlepage}
+		
+		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+		
+		\center
+		
+		\textsc{ UNIVERSIDAD DE GUADALAJARA }\\%[0.5cm] % Name of your university/college
+		\textsc{ CENTRO UNIVERSITARIO DE CIENCIAS ECONÓMICO ADMINISTRATIVAS}\\[0.5cm]		
+		\textsc{ COORDINACIÓN DE POSGRADO}\\%[0.5cm] % Major heading such as course name
+		\textsc{ Maestría en Tecnologías de la Información }\\[0.5cm] % Minor heading such as course title
+		
+		\includegraphics[width=0.3\textwidth]{imagenes/escudoudgcolor.png}\\[0.5cm]
+		
+		\textsc{ TESIS }\\[0.5cm] % Minor heading such as course title
+		
+		%----------------------------------------------------------------------------------------
+		%	TITLE SECTION
+		%----------------------------------------------------------------------------------------
+		
+		{\bfseries ``Derecho comparado asistido por computadora: \\
+		procesamiento de lenguaje natural legal''}\\[0.5cm]
+		%Procesamiento de lenguaje legal natural 
+		
+		%----------------------------------------------------------------------------------------
+		%	AUTHOR SECTION
+		%----------------------------------------------------------------------------------------
+		
+		Trabajo recepcional para obtener el Grado de Maestro en Tecnologías de Información,\\\
+		
+		Quién Presenta:
+		
+		\textsc{\bfseries Héctor Alejandro Vargas Gutiérrez} \\
+		
+		
+		\textsc{ Director de Tesis: }							
+		
+		 \textsc{\bfseries Gerardo Rodríguez Hernández} PhD.\\[0.4cm]
+		 
+		 Zapopan, Jalisco
+		%----------------------------------------------------------------------------------------
+		%	DATE SECTION
+		%----------------------------------------------------------------------------------------
+		
+		{\large 10 de diciembre de 2021} % Date, change the \today to a set date if you want to be precise
+		
+		\vfill % Fill the rest of the page with whitespace	
+	\end{titlepage}
+	\newpage
+	
+	%	\pagenumbering{roman}
+	%	\section*{Agradecimiento}
+	
+	%	\begin{center} \centering \color{red} \textbf{En proceso} \end{center}
+	
+	%	Gracias al Doctor Gerardo Rodríguez Hernández.
+	
+	%	\newpage
+	
+	
+	\tableofcontents
+	\newpage
+	
+	\section*{Agradecimientos}
+	
+	Este trabajo de tesis solo pudo ser posible gracias a:
+	
+	Al CONACYT y a su programa nacional de posgrados de calidad y su beca.
+	
+	Al apoyo de la familia Pacheco-Trujillo y su respaldo económico, en especial a Erick Emmanuel Pacheco Trujillo, que siempre se preocuparon por mi bienestar.
+	
+	A mi madre también por su apoyo y respaldo incondicional.
+	
+	A mi director de tesis Gerardo Rodríguez Hernández, por su experiencia, dirección, tiempo invertido, paciencia y dedicación para que todo el esfuerzo llegara a la mejor de las conclusiones.
+	
+	A la Lic. Oralia Navarro Blackaller por su consejo, apoyo y orientación en el área legal y su colaboración que fue parte muy importante en el desarrollo de esta tesis.
+	
+	A Cucea y la MTI por su programa de estudio y por reunir a los docentes de la más alta calidad
+		
+	Y a mi por el esfuerzo, dedicación, ingenio, creatividad, imaginación e inventiva.
+	
+	¡Gracias!
+	
+	Héctor Alejandro Vargas Gutiérrez.
+	
+	
+	\section*{Resumen}
+	La categorización de texto es un problema fundamental y bien conocido en el procesamiento del lenguaje natural (PNL). Sin embargo, solo unas pocas investigaciones, si las hay, han utilizado la PNL para abordar el tema del derecho comparado. En este artículo, sugerimos utilizar una serie de transformaciones de texto en espacios vectoriales para los artículos de las constituciones políticas de los estados mexicanos incluyendo la CPEUM, así como un conjunto de enfoques de agrupamiento o clustering de estado del arte, para ayudar en el proceso del derecho comparado. Para este efecto, comenzamos recopilando las leyes y posteriormente preprocesando cada artículo, a continuación se hacen las transformaciones en espacios vectoriales para proceder al agrupamiento y darle significado a estos grupos. Este mismo procedimiento aplicado a diferentes casos de prueba nos da el modelo que es evaluado con una métrica integrada, para así evitar el vicio del sobre ajuste para posteriormente escoger el mejor de todos los modelos que generaliza el comportamiento para cualquier entrada o caso que se presente. 
+	
+	%En el capítulo \ref{section:problemática} se aborda la Problemática a resolver de manera más profunda, donde se plantean los objetivos y la hipótesis, y se justifica el sentido de este trabajo.
+	\newpage
+	
+	
+	
+	\section{Capítulo I. Problemática y/o contexto del problema}
+	\label{section:problemática}
+			
+		%causas del problema
+		%como se presenta el problema
+		%como evolociona el problema
+		%efectos del problema
+		%efectos a futuro del problema
+		%cierre con el caso específico
+		
+		
+		El sistema legal mexicano esta siempre en constante cambio, adoptando reformas y actualizaciones en todos los niveles de gobierno. Actualmente existen 312 leyes federales vigentes en las cuales se incluye la constitución Política de los Estados Unidos Mexicanos, 32 leyes estatales, entre otras normas y reglamentos, \cite{Parlamentarios2020}. Esto implica una enorme cantidad de texto a interpretar, lo que supone un gran esfuerzo.
+		
+		El potencial de la ciencia de datos (DS), la inteligencia Artificial (AI), procesamiento del lenguaje natural (NLP) o aprendizaje de máquina (ML) para proporcionar beneficios a los profesionales del derecho y los consumidores de servicios legales es, por lo tanto, enorme \cite{Aletras2020}.
+	
+		El procesamiento del lenguaje natural (NLP),  es una gama de técnicas computacionales motivadas por la teoría para el análisis automático y la representación del lenguaje humano \cite{Cambria2014}. 	
+		
+		Por su propia naturaleza, el ejercicio de la abogacía implica necesariamente el análisis y la interpretación del lenguaje \cite{Romero-Perez2014} por esto se propone una herramienta que asista en el análisis de documentos del sistema legal, en específico del derecho comprado.
+
+		El derecho comparado se basa en la comparación de las distintas soluciones que ofrecen los distintos ordenamientos jurídicos para los mismos casos.\cite{Somma2006}
+		
+		
+		
+		\subsection{Planteamiento del problema y pregunta de investigación}
+		%sintomas
+		México es uno de los países que más leyes posee, incluyendo los 1408 tratados internacionales, aunado a la jurisprudencia, que es otra fuente del derecho \cite{GUERRA2016}.
+		
+		Se realizan constantes cambios y reformas en la constitución mexicana. Por ejemplo se han producido 741 cambios sólo a la carta magna Mexicana desde su promulgación en 1917 \cite{CAMACHO2020};
+		
+		\begin{table}[H]
+			\includegraphics[width=0.9\textwidth]{imagenes/modificacionesCPEUM.png}
+			\centering
+			\caption{Reformas constitucionales por periodo de gobierno}
+			\caption*{\small  Nota: Adaptado de \cite{Fix-Fierro2017}}
+			\label{tab:reformasCPEUM}
+		\end{table}
+		
+		Según lo que se puede observar en el cuadro \ref{tab:reformasCPEUM}, las reformas más recientes han agregado dos veces más la cantidad de palabras que la Constitución Política de los Estados Unidos Mexicanos (CPEUM) contenía al principio en su promulgación de 1917.\cite{Fix-Fierro2017}
+		
+		En el universo del marco normativo mexicano, cada vez hay más y más leyes y reglamentos. En cada una de las 32 entidades federativas hay un congreso que produce una multitud de leyes locales; y además, en los 2 mil 457 municipios se emiten regulaciones a través de diversos ordenamientos jurídicos \cite{BUSTAMANTE2019}.
+		
+		\begin{figure}[H]
+		\includegraphics[width=0.8\textwidth]{imagenes/reformaPromedioLocal.png}
+		\centering
+		\caption{Reformas Constitucionales a la CPEUM y promedio de las locales por año(1917-2018)}
+		\caption*{\small Nota: Adaptado de \cite{Gallardo2020}}
+		\label{fig:promedioLocalXaño}
+		%cambiar la cita abajo de la figura
+		\end{figure}
+		
+		
+		%causas
+		Una de las causas principales de que se cuente con textos muy extensos y detallados es que 
+		las personas al ejercer el derecho que les otorga la constitución, describan con máxima  claridad las normas que deben observar los poderes constituidos, incluyendo los órganos de control de la constitucionalidad \cite{Fix-Fierro2017}.
+		
+		\begin{figure}[H]
+			\includegraphics[width=0.8\textwidth]{imagenes/reformaPromedioLocales.png}
+			\centering
+			\caption{Promedio de reformas constitucionales locales (1997-2018)}
+			\caption*{\small Nota: Adaptado de  \cite{Gallardo2020}}
+			\label{fig:promedioLocal}
+			%cambiar la cita abajo de la figura
+		\end{figure}
+		
+		
+		%consecuencias
+		
+		Al mismo tiempo que se escriben estos textos con tal detalle, se hace más difícil el análisis y el control de cada norma, que puede interpretarse y dar solución de diferente manera para una misma situación \cite{Risco2017}.
+		
+		%pronistico o solución
+		Así, una herramienta de búsqueda que identifica la cercanía semántica entre artículos (inteligente) usando métodos de ML, AI, y NLP, que ayuden a facilitar el trabajo de los abogados y las personas involucradas en el estudio del derecho comparado sería de gran valor, aportando a la calidad de las leyes en el sistema jurídico mexicano pues a la fecha se utilizan solo buscadores de texto a partir de coincidencias exactas.
+		
+		%Ante esta situación se plantean las siguientes preguntas de investigación.
+		Se busca construir un modelo que agregue los artículos de las constituciones con base en su representación semántica a partir de determinar:
+		
+		%¿Cuál es la mejor técnica de representación de texto en espacios vectoriales?
+		¿Cuál es la técnica de representación de texto a usar para los artículos de las constituciones mexicanas en espacios vectoriales?
+		
+		¿Qué técnica de escalación para los datos representados en espacios vectoriales dá el mejor resultado?
+		
+		
+		%¿Qué técnica de clustering es la que agrupa los datos de la mejor manera?
+		¿Qué técnica de clustering a partir de una muestra de técnicas seleccionadas, agrupa mejor los datos para esta aplicación en particular?
+		
+		\subsection{Objetivos}
+			\subsubsection{Objetivo general}
+			Explorar las combinaciones de métodos que mejor describan la similaridad semántica con respecto a los casos de entrada dando como resultado un conjunto de artículos que asistan en las búsquedas de derecho comparado.
+			
+			
+			\subsubsection{Objetivos específicos}
+			Descubrir cuál es el modelo que mejor describe la similaridad semántica entre los artículos de las leyes de los 32 estados de México.
+			
+			Proponer una estrategia sencilla de evaluación para los modelos. 
+			
+		
+		\subsection{Hipótesis}
+		El derecho comparado puede ser asistido por NLP mediante métodos de representación de datos en espacios vectoriales y de clustering clasificando los artículos con similaridad semántica con respecto a los casos de entrada.
+		
+		
+		
+		\subsection{Justificación}
+			\subsubsection{Relevancia social}
+			Se propone entonces investigar un procedimiento que permita contrastar expresiones diferentes que tienen un significado similar a través de las leyes del sistema jurídico mexicano (SJM) para mejorar la calidad de su ordenamiento jurídico encontrando las distintas soluciones que se ofrecen para los mismos casos planteados y que permita aventajar el problema del derecho comparado con la sobre legislación que existe actualmente.
+	
+			La investigación de este procedimiento se basa en la técnica de análisis de texto no estructurado o semi-estructurado, como lo es el procesamiento del lenguaje natural legal (NLLP) que permitirá a las personas involucradas en el estudio del derecho comparado, identificar fácilmente las similitudes de conceptos y las similitudes entre los documentos  del SJM.	
+			
+			La implementación de esta técnica será con la ayuda de tecnologías de información dirigidas al manejo y análisis sistemático de bases de datos, por lo complejo que puede llegar a crecer el problema. 
+			
+			Este proyecto se limita a los artículos de las constituciones de los Estados Unidos Mexicanos, solo podrá encontrar los artículos que son similares dentro de las 32 constituciones políticas de cada estado en México pero se espera que la funcionalidad del sistema que se presenta en este trabajo pueda extenderse a las demás legislaciones y materias legales, inclusive a otros sistemas legales escritos del mundo, similares al sistema mexicano.
+			
+
+			\subsubsection{Contribuciones}
+			% aportación a la ciencia es, que cosas nuevas añade a la ciencia o a la evaluacion o a la discución del tema.
+			Desarrollar métodos que faciliten la creación de herramientas para asistir en el análisis del derecho comparado, aprovechando las herramientas, las tecnologías y los métodos de análisis de datos que ofrecen las tecnologías de la información en el área del aprendizaje automático. 
+		
+			%Cuales son los aportes
+				%voy a ayudar 
+			Aporta un mecanismo de comparación de modelos y una secuencia de pasos de análisis que pueden ser procesados a gran escala para comparar el rendimiento de modelos utilizados para la organización semántica de textos y que pueda usarse en las diferentes aplicaciones del derecho comparado.
+			
+			Aporta también un sistema que puede ser mantenido y modificado fácilmente para incluir parámetros de ajuste a modelos y otros métodos en cualquiera de sus etapas, ya sea de evaluación de modelos, transformación de datos e inclusive de alimentación de datos.
+			
+			Este trabajo también está limitado en el uso de los métodos y técnicas de clustering y representación vectorial a los que se usan en este trabajo, teniendo en cuenta que actualmente existen otros métodos y técnicas que se podrían utilizar, y se dejan como trabajo futuro.
+				
+	\newpage
+	\section{Capítulo II. Marco teórico conceptual}
+		\subsection{Antecedentes del problema}
+			%\subsubsection{Marco Normativo}
+			%(ISO, certificaciones, estandares internacionales, estandares nacionales, mejores prácticas )
+			\subsubsection{PEP 8}
+			La documentación de PEP 8 especifica las reglas de codificación para el código Python que forma la biblioteca estándar en la versión oficial de Python. PEP 8 es una guía de estilo que especifica el diseño, el uso de comillas, comentarios, convenciones sobre los nombres de las variables y sus clases, los nombres que deben evitarse entre otras.\cite{Rossum2001}
+			
+			Para facilitar los procesos de transferencia y mantenimiento del código, se utilizará este estándar de codificación en la implementación de los métodos desarrollados en este trabajo.
+			
+			\subsubsection{Marco Histórico}
+			Antes de 1940, las computadoras, si es que se pensaba en ellas, se consideraban procesadores numéricos. Durante la década de 1940, dos desarrollos importantes llevaron a ver las computadoras como algo más que simples procesadores de números. \cite{Lehnert2014}
+			
+			El primer conjunto de ideas se debió a McCullough y Pitts, quienes teorizaron que cada neurona es un dispositivo lógico (aproximadamente una compuerta AND y OR). En la figura \ref{fig:neuronaMcCulloghPitts} se observa a la izquierda el esquema de una neurona biológica y sus partes y a la derecha una neurona representada como un dispositivo lógico. Ahora sabemos que cada neurona es mucho más compleja de lo que creían, pero sus ideas eran importantes porque sugerían que todo procesamiento inteligente, ya sea aritmético o simbólico, numérico o verbal, podría realizarse mediante un solo tipo de mecanismo. Por lo tanto, sus puntos de vista fueron importantes en una formulación mucho más precisa de la analogía cerebro-computadora de lo que había sido posible antes.\cite{Lehnert2014}
+					
+			\begin{figure}[H]
+				\includegraphics[width=0.8\textwidth]{imagenes/neuronaMccoulloghPitts.png}
+				\centering
+				\caption{Neurona de Mc Cullough y Pitts }
+				\caption*{\small Nota: Adaptado de \cite{Manevitz2007}}
+				\label{fig:neuronaMcCulloghPitts}
+				%cambiar la cita abajo de la figura
+			\end{figure}		
+			
+			
+			El segundo trabajo importante fue el trabajo de Shannon sobre la teoría de la información. Shannon aplicó modelos probabilísticos de procesos de Markov discretos para automatizar el proceso del lenguaje \cite{Kumar2011}, también demostró que tanto los números como el texto pueden tratarse como casos especiales de un concepto más general que llamó ``información''. En la figura \ref{fig:modeloShannon} se observa un esquema del modelo de Shannon sobre la teoría de la información. Además menciona que el contenido de la información se puede cuantificar y que las ideas sobre la información tienen aplicaciones matemáticas y prácticas interesantes.\cite{Lehnert2014}
+				
+			
+			
+			\begin{figure}[H]
+				\includegraphics[width=0.8\textwidth]{imagenes/modeloShannon.png}
+				\centering
+				\caption{Modelo de Shannon sobre la teoría de la información}
+				\caption*{\small Nota: Adaptado de  \cite{Nizami2015}}
+				\label{fig:modeloShannon}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+			
+			
+			Estos primeros modelos condujeron al campo de la teoría formal del lenguaje, que usaba álgebra y teoría de conjuntos para definir lenguajes formales como secuencias de símbolos. Esto incluía gramáticas sin contexto, definidas al principio por Chomsky para lenguajes naturales pero descubiertos independientemente por Backus y Naur en la descripción del lenguaje de programación ALGOL.\cite{Kumar2011}
+			
+			En la figura \ref{fig:chomsky} se observa la fotografía de Noam Chomsky joven siendo profesor en el MIT de lingüística, de teoría lingüística, sintáctica, semántica y filosofía de lenguaje inglés.			
+			
+			\begin{figure}[h]
+				\includegraphics[width=0.3\textwidth]{imagenes/chomsky.png}
+				\centering
+				\caption{Noam Chomsky}
+				\caption*{\small Nota: Adaptado de  \cite{UMBC2004}}
+				\label{fig:chomsky}
+				%cambiar la cita abajo de la figura
+			\end{figure}		
+			
+			Además en la figura \ref{fig:BackusNaur} se puede observar a John Backus y a Peter Naur señalados en un círculo uno al lado del otro. También se puede ver a John McCarthy, Fritz Bauer y a Joe Wegstein en la parte superior de la imagen y a Alan perlis en la parte inferior derecha. Esta foto fue tomada en la conferencia de 1974 de la ACM (Association for Computing Machinery); esta conferencia fue sobre la historia de los lenguajes de programación. 
+		
+			\begin{figure}[H]
+				\includegraphics[width=0.8\textwidth]{imagenes/backusNaur.png}
+				\centering
+				\caption{John Backus y Peter Naur}
+				\caption*{\small Nota: Adaptado de  \cite{UMBC2004}}
+				\label{fig:BackusNaur}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+			
+					
+			A principios de la década de 1950, el trabajo de Shannon condujo a lo que se le llama "la era de la traducción automática". Ser capaz de tratar el texto y el lenguaje en general como información permitió la posibilidad de que el lenguaje pudiera ser manipulado en las nuevas computadoras digitales que se estaban construyendo. La idea inicial de la traducción automática fue la siguiente: la traducción es un proceso de búsqueda de diccionario, más sustitución, más grabación gramatical. Para ejemplos simples, este modelo de posibilidad de traducción parece bastante intrigante. Sin embargo, pronto quedó claro que la traducción no es posible sin comprensión. Para ilustrar la necesidad de comprensión en la traducción, una historia clásica (probablemente apócrifa) describe la traducción automática de la frase ``El espíritu está dispuesto pero la carne es débil''. al ruso y luego de nuevo al inglés; se dice que el resultado de la traducción fue: ``El vodka es fuerte pero la carne está podrida'' .\cite{Lehnert2014}
+			
+			Para continuar con esta breve historia, otras ideas importantes que han sido influyentes en la historia del procesamiento del lenguaje natural surgieron en la década de 1950. Específicamente la introducción de la idea de búsqueda heurística por Newell y Simon (1956) y también a la introducción del lenguaje de programación LISP por McCarthy (1960). La mayoría de los sistemas de procesamiento del lenguaje natural se han escrito en LISP.
+			Todo el campo de la traducción automática llegó a su fin a principios de la década de 1960. Solo ahora está experimentando una especie de renacimiento, utilizando modelos de significado de IA, pero el esfuerzo inicial fue un fracaso casi completo.\cite{Lehnert2014}
+			
+			En la figura \ref{fig:JohnMcCarthy} se observa al creador del lenguaje de programación LISP John McCarthy jugando al ajedrez a distancia por telégrafo con oponentes en Rusia. 
+				
+			\begin{figure}[H]
+				\includegraphics[width=0.8\textwidth]{imagenes/mcCarthy.png}
+				\centering
+				\caption{John McCarthy}
+				\caption*{\small Nota: Adaptado de  \cite{Khanna2020}}
+				\label{fig:JohnMcCarthy}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+		
+		
+			De 1957 a 1979 el procesamiento del lenguaje se separó claramente en dos paradigmas: el simbólico y el estocástico. El trabajo simbólico se separó en dos lineas de trabajo. 
+			
+			La primera era el trabajo de Chomsky y la teoría formal del lenguaje y sintaxis generativa y también el trabajo de muchos lingüistas y científicos de computadoras en algoritmos de análisis, que inicialmente usaban aproximaciones denominadas de  arriba hacia abajo y de abajo hacia arriba y después programación dinámica. Uno de los primeros sistemas de análisis completos, desarrollados bajo esta aproximación fue el proyecto de análisis de transformaciones y discursos .\cite{Kumar2011}
+			
+			La segunda linea de trabajo fue el nuevo campo de la Inteligencia artificial. En un taller de inteligencia artificial celebrado en 1959 se discutieron los primeros sistemas de lenguaje natural. Estos fueron sistemas simples que trabajaban en un único dominio, principalmente por una combinación de coincidencias de patrones y búsqueda de palabras clave con heurísticas simples de razonamiento y de respuestas a preguntas.\cite{Kumar2011}
+			
+			De los escombros del trabajo de traducción automática surgió un esfuerzo que está estrechamente asociado con la inteligencia artificial. La ``era del procesamiento de información semántica'' (aproximadamente 1962-1973) produjo una serie de ideas utilizadas en los sistemas actuales de aplicación del lenguaje natural, algunas de las cuales han demostrado ser de valor práctico.\cite{Lehnert2014}
+			
+			Algunas de estas ideas corresponden por ejemplo a:
+			
+			\begin{itemize}
+				\item El uso de dominios limitados para sistemas de comprensión de idiomas. 
+				
+				En lugar de intentar comprender todo el lenguaje, el enfoque de dominio limitado consiste en diseñar un sistema que sea experto en un área específica del lenguaje, pero tal vez no sepa nada sobre ningún otro dominio.
+							
+				\item  El uso de palabras clave para desencadenar determinadas acciones.
+				
+				\item La ``traducción'' del inglés a idiomas formales. 
+				
+				Algunos de los lenguajes formales que se han utilizado incluyen cálculo de predicados, lenguajes de consulta de bases de datos y conjuntos de ecuaciones lineales
+				
+				\item La teoría del ``big switch''
+				
+				que sostiene que es posible construir un sistema ampliamente inteligente generando expertos en varios dominios limitados y luego ensamblando un sistema enorme que contenga a esos expertos junto con un experto especial, el ``big switch'', que podría seleccionar al experto apropiado para manejar cualquier problema dado.\cite{Lehnert2014}
+				
+			\end{itemize}
+			
+			
+			En 1969 Roger Schank introdujo la teoría de la dependencia conceptual para la comprensión del lenguaje natural . Este modelo, parcialmente influenciado por el trabajo de Sydney Lamb, fue ampliamente utilizado por los estudiantes de Schank en la Universidad de Yale, como Robert Wilensky, Wendy Lehnert y Janet Kolodner.\cite{Schank1969}
+			
+			Entre 1970 y 1993 se vivió una explosión en la investigación en el procesamiento del lenguaje. El éxito de la SHRDLU mostró que el análisis sintáctico estaba lo suficientemente bien entendido como para comenzar a centrarse en la semántica y los modelos de descubrimiento. La figura \ref{fig:SHRDLU} muestra la estructura del funcionamiento deL programa para la comprensión del lenguaje desarrollado por Terry Winograd en el MIT entre los años 1968 y 1970. Roger Shank y sus colegas crearon una serie de programas de comprensión del lenguaje que se centraron en el conocimiento conceptual humano, como guiones, planes y metas, y la organización de la memoria humana.\cite{Kumar2011}
+			
+	
+			\begin{figure}[H]
+				\includegraphics[width=0.8\textwidth]{imagenes/SHRDLU.png}
+				\centering
+				\caption{Estructura de la SHRDLU}
+				\caption*{\small Nota: Adaptado de  \cite{Schubert2020}}
+				\label{fig:SHRDLU}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+	
+			
+			En 1970, William A. Woods introdujo la red de transición aumentada (ATN) para representar la entrada del lenguaje natural. La estructuras de este tipo de red es representada en la figura \ref{fig:structureATN}. En lugar de reglas de estructura de frases, los ATN utilizaron un conjunto equivalente de autómatas de estado finito que se llamaban de forma recursiva. Un ejemplo general de esto se observa en la figura \ref{fig:representationATN} donde se muestra cómo se forma una oración en una ATN. Los ATN y su formato más general llamado ``ATN generalizado'' continuaron utilizándose durante varios años. Durante los años 70, muchos programadores comenzaron a escribir ``ontologías conceptuales'', que estructuraban la información del mundo real en datos comprensibles por computadora. Algunos ejemplos son MARGIE (Schank, 1975), SAM (Cullingford, 1978), PAM (Wilensky, 1978), TaleSpin (Meehan, 1976), QUALM (Lehnert, 1977), Política (Carbonell, 1979) y Plot Units (Lehnert 1981).  Durante este tiempo, se escribieron muchos chatterbots, incluidos PARRY, Racter y Jabberwacky.  \cite{Woods1970}
+			
+	
+			
+			\begin{figure}[h]
+				\includegraphics[width=0.4\textwidth]{imagenes/representationATN.png}
+				\centering
+				\caption{Representación de una oración en una ATN}
+				\caption*{\small Nota: Adaptado de  \cite{BrainKart.com2018}}
+				\label{fig:representationATN}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+
+			
+			\begin{figure}[h]
+				\includegraphics[width=0.8\textwidth]{imagenes/structureATN.png}
+				\centering
+				\caption{Estructura de las ATN}
+				\caption*{\small Nota: Adaptado de  \cite{BrainKart.com2018}}
+				\label{fig:structureATN}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+			
+			
+			Los paradigmas de comprensión del lenguaje natural y basado en la lógica se unificaron en sistemas que utilizaban la lógica de predicados como representación semántica. LUNAR es un ejemplo de tal sistema.\cite{Kumar2011}	
+			
+			
+			Un paradigma de modelado del discurso se ha centrado en cuatro áreas clave del análisis del discurso. Grósz y sus colegas introdujeron el concepto de estudio de la subestructura en el discurso y del enfoque del curso directo.\cite{Kumar2011}
+			
+			Hasta la década de 1980, la mayoría de los sistemas de NLP se basaban en conjuntos complejos de reglas escritas a mano. Sin embargo, a finales de la década de 1980, se produjo una revolución en la NLP con la introducción de algoritmos de aprendizaje automático para el procesamiento del lenguaje. Esto se debió tanto al aumento constante del poder computacional resultante de la Ley de Moore como a la disminución gradual del dominio de las teorías lingüísticas chomskyanas (por ejemplo, la gramática transformacional), cuyos fundamentos teóricos desalentaban el tipo de lingüística de corpus que subyace al enfoque de aprendizaje automático de procesamiento del lenguaje. Algunos de los primeros algoritmos de aprendizaje automático utilizados, como los árboles de decisión, produjeron sistemas de reglas estrictas si-entonces similares a las reglas escritas a mano existentes. \cite{umessantilal2020}.
+			
+			En a figura \ref{fig:NLPantes} se ilustra una linea temporal del desarrollo del NLP en los años desde 1949 al año de  1980 donde se considera que se definieron las bases para el desarrollo antes del deep learning o aprendizaje profundo.
+								
+			\begin{figure}[H]
+				\includegraphics[width=0.8\textwidth]{imagenes/NLPantes.png}
+				\centering
+				\caption{NLP antes de la era del ``Deep learning''}
+				\caption*{\small Nota: Adaptado de  \cite{Louis2020}}
+				\label{fig:NLPantes}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+			
+			
+			En los últimos años, el uso de modelos probabilísticos y basados en datos se volvió bastante estándar en todo el procesamiento del lenguaje natural. Los algoritmos de análisis sintáctico, etiquetado de parte del discurso, resolución de referencias y procesamiento de discurso, todos comenzaron a incorporar probabilidades y a emplear estrategias de evaluación tomadas del reconocimiento de voz y la recuperación de información. Además, las innovaciones tecnológicas en hardware, como el aumento de la velocidad y la memoria de las computadoras, habían permitido la explotación comercial de una serie de subáreas del procesamiento del habla y el lenguaje, en particular el reconocimiento del habla y la revisión ortográfica y gramatical. Además, el auge de las aplicaciones web recientes había agregado una nueva dimensión de énfasis en la necesidad de recuperación y extracción de información basada en el lenguaje.\cite{Kumar2011}.
+			
+			En la figura \ref{fig:NLPdurante} se ilustra la linea del tiempo que comprende desde el año 2003 al 2015, donde se considera que hubo una revolución en el NLP gracias al aprendizaje profundo. Un periodo mas corto que la era anterior en la que se hicieron muchos más avances. 
+			
+			\begin{figure}[H]
+				\includegraphics[width=0.8\textwidth]{imagenes/NLPdurante.png}
+				\centering
+				\caption{NLP durante la era del ``Deep learning''}
+				\caption*{\small Nota: Adaptado de  \cite{Louis2020a}}
+				\label{fig:NLPdurante}
+				%cambiar la cita abajo de la figura
+			\end{figure}
+	
+		\subsection{Bases teóricas}
+			\subsubsection{NLP}
+			El procesamiento del lenguaje natural (del ingles natural language processing NLP) es un tema de lingüística, informática e inteligencia artificial que se ocupa de las interacciones entre el lenguaje humano y la computadora, específicamente cómo entrenar a las computadoras para que procesen y evalúen grandes volúmenes de datos del lenguaje natural. El objetivo es crear una computadora que pueda ``comprender'' el contenido de los artículos, incluidas las sutilezas contextuales del lenguaje que contienen. A continuación, el sistema puede extraer información y conocimientos de los documentos, así como categorizar y organizar los propios documentos.	Los problemas de procesamiento del lenguaje natural generalmente involucran el reconocimiento de voz, la comprensión del lenguaje natural y la producción del lenguaje natural. \cite{Razno2019}
+			
+						
+			\subsubsection{Pyspark}
+			Apache Spark es un motor de análisis unificado gratuito y de código abierto para procesar grandes cantidades de datos. Spark proporciona una interfaz de programación para clústeres completos con paralelismo de datos implícito y tolerancia a fallas. El código base de Spark se desarrolló por primera vez en la Universidad de California, AMPLab de Berkeley y finalmente se donó a la Apache Software Foundation, que desde entonces lo ha mantenido.\cite{Gressling2020}
+			
+			Spark Core es la base de todo el proyecto. Ofrece la transmisión de tareas distribuidas, programación y funcionalidad básica de entradas y salidas a través de una interfaz de programación de aplicaciones dara Python basada en la abstracción RDD.\cite{Vermeulen2018}
+			
+			\subsubsection{Preprocesamiento}
+			El preprocesamiento de texto es una parte integral de cualquier sistema de NLP, ya que las palabras y oraciones descubiertas en este paso sirven como unidades fundamentales para todas las etapas de procesamiento posteriores. \cite{Kannan2014}%El preprocesamiento es una colección de actividades que se utilizan para preprocesar documentos de texto.
+			
+			Algunas técnicas utilizadas para el preprocesamiento del lenguaje natural  son:
+			
+			\begin{itemize}
+			\item Tokenización
+			
+			La tokenización es el proceso de dividir un fragmento de texto en componentes más pequeños conocidos como tokens. Los tokens pueden ser palabras, letras o subpalabras en este contexto. \cite{Senanayake2019}
+			
+			\item Remoción de palabras vacías o de paro o también llamadas stop words
+			
+			Las palabras vacías son los términos más comunes en cualquier lenguaje natural que transmiten poco o ningún contexto semántico en una oración. Solo tiene importancia gramatical y ayuda con la construcción de oraciones. Debe eliminarse como una actividad de preprocesamiento para simplificar las siguientes actividades y acelerar los procesos esenciales de procesamiento de texto.\cite{Raulji2016}
+			
+			\item Stemming
+			El proceso de reducir las palabras flexionadas u ocasionalmente derivadas a su forma base o raíz, que generalmente es una forma de palabra escrita, se conoce como derivación o stemming. La raíz no tiene que ser la misma que la raíz morfológica de la palabra; con frecuencia es suficiente que las palabras relacionadas se asignen a la misma raíz, incluso si esta raíz no es una raíz legítima en sí misma.\cite{Gupta2013}
+			
+			\item N-gramas
+			
+			Un n-grama es una secuencia continua de n elementos de una muestra dada de texto o voz en las disciplinas de lingüística computacional y probabilidad. Dependiendo de la aplicación, los elementos pueden ser fonemas, sílabas, letras, palabras o pares de bases. Normalmente, los n-gramas se extraen de un texto o corpus de audio. Cuando los componentes son palabras, los n-gramas también se conocen como culebrillas \cite{Broder1997}.			
+			
+			\end{itemize}
+						
+			
+			\subsubsection{Textos en espacios vectoriales}
+			La representación de textos en espacios vectoriales son técnicas de procesamiento de lenguaje natural que toma una colección de textos o corpus y los transforma en una matriz numérica. \cite{Shahmirzadi2018}
+				
+				\subsubsubsection{Count vectorizer}
+				El Count vectorizer (también llamado term frequency vectorizer), registra el número de veces que aparece cada palabra de un vocabulario en un documento. Este documento se representa como un vector de palabras con un recuento de cuántas veces aparece cada palabra en el documento. Debido a que la mayoría de los términos del vocabulario probablemente tendrán una frecuencia de '0', también se emplea una matriz de dispersión en esta técnica. \cite{Basarkar2017}
+				
+				\subsubsubsection{TF IDF}
+				%significado
+				TFIDF es un acrónimo que se refiere a ``term frequency Inverse document frequency''. 
+				Establece una proporción de la frecuencia de un término en un documento dado en proporción al inverso de la frecuencia del mismo término en el corpus de documentos.
+				%esto quiere decir...(con mis palabras) explicación
+				Esta métrica ayuda a identificar los términos clave en un documento con referencia al corpus, se espera que los términos clave aparezcan con una frecuencia mayor en el documento y con una frecuencia menor el el corpus. \cite{Siregar2019}
+				
+				% el tf idf se calcula así, (poner las fórmulas)
+				El valor de TF-IDF se define a partir de las ecuaciones \ref{eq:IDF_term} y \ref{eq:term_frequency} de la siguiente forma.
+								
+				Inverse Document Fequency IDF:
+				\begin{equation}\label{eq:IDF_term}
+					idf_t = log_{10}(\frac{N}{df_t}) 
+				\end{equation}
+				
+				donde:
+				\begin{conditions}
+					idf_t &  número de documentos que que contienen el término \\
+					N     &  número total de documentos en el corpus \\   
+					df_t  &  número de documentos en donde aparece el término $\neq$ 0
+				\end{conditions}
+				 si el término no aparece en el documento es común agregarle uno para ajustar el denominador: $1 + df_t $
+				
+				Term Frequency TF:
+				\begin{equation}\label{eq:term_frequency}
+				tf_{i,j}=\frac{tf_{i,j}}{max(tf_{i,j})}
+				\end{equation}
+				
+				donde:
+				\begin{conditions}
+					tf &  número de veces que el término aparece en un documento 
+				\end{conditions}			
+			TF-IDF:
+				\begin{equation}\label{eq:TFIDF}
+				TFIDF=tf (idf_t)
+				\end{equation}
+				
+				\subsubsubsection{Word2Vec}
+				Word2vec fue publicado por Tomas Mikolov en google en 2013. El método word2vec aprende conexiones de palabras a partir de un corpus de texto utilizando un modelo de redes neuronales. Una vez que se entrena este modelo, puede reconocer sinónimos y proponer palabras adicionales para una oración. Word2vec asocia cada palabra individual con un conjunto específico de números enteros conocido como vector. Los vectores se construyen de manera que el grado de similitud semántica entre las palabras representadas por esos vectores se pueda determinar usando una función matemática simple (similitud de coseno entre los vectores). \cite{Jain2020}
+				
+				Continuous Bag of Words (CBOW) y Skip-Gram son los dos modelos principales de word2vec. El modelo CBOW predice una palabra en función de su contexto (un contexto puede ser algo así como una oración). Skip-Gram funciona en la dirección inversa, prediciendo el contexto a partir de una sola palabra de entrada.\cite{Meyer2016}
+				
+			%pee point 
+			\subsubsection{Métodos de clustering}
+			El problema de aprendizaje no supervisado más común es el de agrupación o clustering, que implica identificar una estructura en un conjunto de datos sin etiquetar. Como resultado, un grupo es una colección de elementos que son ``comparables'' entre sí, pero ``únicos''` para los objetos de otros grupos diferentes.\cite{Madhulatha2012}
+							
+				\subsubsubsection{Distribuciones gaussianas mixtas}
+				Un modelo mixto es un modelo probabilístico que captura la existencia de subpoblaciones dentro de una población más grande sin requerir un conjunto de datos observados para determinar a qué subpoblación pertenece una observación individual. La distribución mixta, que refleja la distribución de probabilidad de las observaciones en la población total, se especifica formalmente como un modelo mixto. Mientras que las cuestiones de ``distribución mixta'' tienen que ver con derivar los atributos de la población en general de los de las subpoblaciones, los ``modelos mixtos'' se utilizan para extraer inferencias estadísticas sobre las propiedades de las subpoblaciones utilizando solo datos de la población en general. Debido a que la asignación de la subpoblación es incierta, este es un ejemplo de aprendizaje no supervisado. \cite{Elmahdy2013}
+								
+				\subsubsubsection{Agglomerative clustering}
+				La agrupación en clústeres jerárquica es un tipo de análisis de clústeres en la minería de datos que intenta construir una jerarquía de clústeres. Los métodos de agrupación jerárquica se clasifican en dos tipos:
+				Aglomerativo: que trata de un enfoque ``de abajo hacia arriba'' en el que cada observación se asigna a un grupo separado, con pares de grupos que se fusionan a medida que aumenta la jerarquía.
+				Divisivo: que es una técnica ``de arriba hacia abajo'' en la que todas las observaciones se agregan y luego se dividen repetidamente a medida que uno viaja hacia abajo en la jerarquía. \cite{Sharma2013} 
+				
+				
+				Se requiere una medida de disimilitud entre conjuntos de datos para determinar si los clústeres deben consolidarse (para la agrupación aglomerativa) o dónde debe dividirse los clústeres (para la división). La mayoría de los algoritmos de agrupamiento jerárquico hacen esto mediante la combinación de una métrica (una medida de distancia entre pares de observaciones) con un criterio de vinculación, que especifica la disimilitud de conjuntos en función de las distancias por pares de observaciones en los conjuntos. \cite{Sasirekha2013}
+				
+				
+				Métricas:
+				
+				Distancia Euclideana:
+				\begin{equation}\label{eq:euclidean_distance}
+				\parallel a-b \parallel_2 = \sqrt{\sum_i (a_i-b_i)^{2}}
+				\end{equation}
+				
+				Distancia Euclideana cuadrada:
+				\begin{equation}\label{eq:squared_euclidean_distance}
+				\parallel a-b \parallel_{2}^{2} = \sum_i (a_i-b_i)^{2}
+				\end{equation}
+				
+				Distancia Manhattan, city block o geometría taxicab:
+				\begin{equation}\label{eq:taxicab}
+				\parallel a-b \parallel_1 = \sum_i |a_i-b_i|
+				\end{equation}
+				
+				Distancia máxima o de Chevishev:
+				\begin{equation}\label{eq:Chevishev}
+				\parallel a-b \parallel_{\infty} = \max_{i} |a_i-b_i|
+				\end{equation}
+				
+				Distancia Mahalanobis:
+				\begin{equation}\label{eq:Mahalanobis}
+				\sqrt{(a-b)^{\top} S^{-1}(a-b)} 
+				\end{equation}
+				donde
+				\begin{conditions}
+					S & matriz de covarianzas. 
+				\end{conditions}
+				
+				Criterio de vinculación o linkage:
+				
+				Máxima o completa (complete-linkage clustering):
+				\begin{equation}\label{eq:complete_link}
+				\max\{d(a,b):a \in A; b \in B\}.
+				\end{equation}
+				
+				Mínima o single-linkage clustering
+				\begin{equation}\label{eq:single_link}
+				\min\{d(a,b):a \in A; b \in B\}.
+				\end{equation}
+				
+				Promedio no ponderado o UPGMA:
+				\begin{equation}\label{eq:UPGMA_link}
+				\frac{1}{A \cdot B}\sum_{a \in A}\sum_{b \in B}d(a,b).
+				\end{equation}
+				
+				Promedio ponderado o WUPGMA:
+				\begin{equation}\label{eq:WUPGMA_link}
+				d(i \cup j, k) =  \frac{d(i,k)+d(j,k)}{2}.
+				\end{equation}
+				
+				Centroide o  UPGMC
+				\begin{equation}\label{eq:UPGMC_link}
+				\parallel c_s - c_t \parallel
+				\end{equation}
+				donde
+				\begin{conditions}
+					c_s ; c_t & son los centroides de los clusters y t respectivamente 
+				\end{conditions}
+				
+				Energía mínima
+				\begin{equation}\label{eq:energ_min}
+				\frac{2}{nm}\sum_{i,j=1}^{n,m}\parallel a_i-b_j \parallel_2-\frac{1}{n^2}\sum_{i,j=1}^n \parallel a_i-a_j \parallel_2-\frac{1}{m^2}\sum_{i,j=1}^m \parallel b_i-b_j \parallel_2
+				\end{equation}
+				
+				
+				donde para todos los criterios de vinculación o linkage que usen d:
+				\begin{conditions}
+					d & la métrica escogida 
+				\end{conditions}
+				
+				\subsubsubsection{K means}
+				El agrupamiento de k-means o k-medias es una técnica de cuantificación de vectores que se origina a partir del procesamiento de señales que intenta dividir n observaciones en k grupos, y cada observación pertenece al grupo con la media más cercana (centros de grupo o centroide de grupo), que actúa como prototipo. Como resultado de esto, el espacio de datos se divide en celdas de Voronoi; una celda de Voronoi es una región dentro de un plano donde se agrupan varios puntos y otros grupos también se agrupan contiguos entre sí formando celdas al rededor de un punto semilla \cite{Zdimalova2021}. Las varianzas dentro de los conglomerados (distancias euclidianas cuadradas) se reducen mediante la agrupación de k-medias, pero no las distancias euclidianas regulares: la media optimiza los errores cuadrados, pero solo la mediana geométrica minimiza las distancias euclidianas. Por ejemplo, se pueden utilizar k-medianas y k-modas para obtener mejores soluciones euclidianas. \cite{Chase2018}
+				
+				Dada una colección de observaciones $(x_1, x_2, ..., x_n)$, cada una de las cuales es un vector real de d-dimensiones, la agrupación de k-medias intenta dividir las $n$ observaciones en $k (\leq n)$ grupos $S = S_1, S_2, ..., S_k$ para minimizar la suma de cuadrados dentro del conglomerado (within-cluster sum of squares WCSS) (es decir, la varianza). Segun \cite{Mohamad2013} formalmente, el objetivo es descubrir:
+				\begin{equation}\label{eq:WCSS_k_means}
+				\operatorname*{arg\,max}_{s} \sum_{i=1}^{k} \sum_{x \in S_i} \parallel x - \mu_i \parallel^2 = \operatorname*{arg\,max}_{s} \sum_{i=1}^{k} \mid S_i \mid Var S_i
+				\end{equation}
+				
+				Donde $\mu_i$ es la media de los puntos $S_i$. esto es equivalente a minimizar las desviaciones cuadradas por pares de puntos en el mismo grupo:				
+				\begin{equation}\label{eq:pairwise_squared_deviations_of_points}
+				\operatorname*{arg\,max}_{s} \sum_{i=1}^{k} \frac{1}{2 \mid S_i \mid}\sum_{x,y \in S_i} \parallel x - y \parallel^2
+				\end{equation}
+				
+				La equivalencia se puede deducir de la siguiente identidad:								
+				\begin{equation}\label{eq:variance_identity}
+				\sum_{x \in S_i} \parallel x - \mu_i \parallel^2 = \sum_{x \neq y \in S_i}(x- \mu_i)^T(\mu_i - y)
+				\end{equation}
+				
+				Debido a que la varianza total es constante, esto equivale a maximizar la suma de las desviaciones al cuadrado entre puntos en diferentes grupos (between-cluster sum of squares, BCSS) \cite{Kriegel2016}. Lo cual sigue la ley de la Varianza total que establece que si X e Y son variables aleatorias en el mismo espacio de probabilidad, y la varianza de Y es finita \cite{Weiss2006}, entonces:
+				\begin{equation}\label{eq:law_of_Total_Variance}
+				{\displaystyle \operatorname {Var} (Y)=\operatorname {E} [\operatorname {Var} (Y\mid X)]+\operatorname {Var} (\operatorname {E} [Y\mid X]).}
+				\end{equation}
+				
+			\subsubsection{Métodos de Normalización, estandarización y escalación de datos}
+			\subsubsubsection{Escala mínima-máxima o normalización mínima-máxima}
+			El enfoque más simple, también conocido como escala mínima-máxima o normalización mínima-máxima, consiste en cambiar la escala del rango de características para escalar el rango en $[0, 1]$ o $[-1, 1]$. El rango objetivo se elige en función de la naturaleza de los datos \cite{Ekaterina2019}. La fórmula general para un valor mínimo-máximo de $[0, 1]$ es la siguiente:
+			\begin{equation}\label{eq:Min_Max_scaler}
+			x'=\frac  {x - \min(x)}{\max(x)-\min(x)}
+			\end{equation}
+			
+			donde
+			\begin{conditions}
+			x   &  es el valor original \\   
+			x'  &  es el valor normalizado
+			\end{conditions}
+			
+			La fórmula para cambiar la escala de un rango entre dos valores arbitrarios $[a, b]$ es:	
+			\begin{equation}\label{eq:Min_Max_scaler_entre_a_y_b}
+			x'= a + \frac{(x - \min(x))(b-a)}{\max(x)-\min(x)}
+			\end{equation}
+						
+			donde
+			\begin{conditions}
+			a,b   &  son los valores mínimo-máximo
+			\end{conditions}
+			
+
+			\subsubsubsection{Estandarización o normalización de valor Z-score o orto normalización}
+			Podemos manejar numerosos tipos de datos en el aprendizaje automático, y estos datos pueden tener varias dimensiones. La estandarización de características asegura que los valores de cada dimensión en los datos tengan una media cero (cuando se resta la media en el numerador) y una varianza unitaria. Este enfoque se utiliza comúnmente en varios métodos de aprendizaje automático para la normalización. La principal técnica de cálculo es calcular la desviación estándar y la media de la distribución para cada atributo. Luego, la media se resta de cada característica. Luego dividimos los valores de cada dimensión característica con la media previamente restada por su desviación estándar \cite{Fouad2020}, quedando como sigue:
+			\begin{equation}\label{eq:Normalizacion_de_valor_Z-score}
+			x' = \frac{x - \bar{x}}{\sigma}
+			\end{equation}
+			
+			donde
+			\begin{conditions}
+			x        &  es el vector de características o dimensión original \\   
+			\bar{x}  &  es la media del vector de características \\
+			\sigma   & es la desviación estándar del vector de características
+			\end{conditions}
+						
+			\subsubsubsection{Espacios vectoriales normados $L^p$}
+			Los espacios $L^p$ son espacios funcionales desarrollados en matemáticas como una generalización natural de la p-norma para espacios vectoriales de dimensión finita. En estadística, las métricas de $L^p$ se utilizan para establecer medidas de tendencia central y dispersión estadística, como la media, la mediana y la desviación estándar, y las medidas de tendencia central pueden considerarse como soluciones a problemas de variación \cite{Dhinu2021}.
+			
+			Para un número real $p \geq 1$, la p-norma o $L^p$-norma de $x$ está definida por:
+			\begin{equation}\label{eq:Norma_Lp}
+			\parallel x \parallel_p = (|x_{1}|^{p}+|x_{2}|^{p}+\dotsb +|x_{n}|^{p})^{1/p}
+			\end{equation}
+			
+			Las barras de valor absoluto son innecesarias cuando $p$ es un número racional y, en forma reducida, tiene un numerador par.
+			
+			
+			
+			\subsubsubsection{Norma Taxicab o Manhattan}
+			El nombre hace referencia a la distancia recorrida por un taxi en una cuadrícula de calles rectangulares para ir desde el origen hasta el punto x. La superficie de un polítopo cruzado de dimensión igual a la norma menos 1 ($L^{p-1}$) está formada por el conjunto de vectores cuya norma 1 es igual a una cierta constante. El estándar del taxi también se conoce como el estándar l1. La distancia de Manhattan, a menudo conocida como distancia l1, se deriva de esta norma \cite{Nelson2010}, entonces:
+			\begin{equation}\label{eq:Norma_L1}
+			\parallel x \parallel_1 := \sum_{i=1}^n |x_i|
+			\end{equation}
+
+			La norma 1 es solo la suma de los valores absolutos de la columna.
+			
+			en comparación con la siguiente función que no es una norma porque puede producir resultados negativos:
+			\begin{equation}\label{eq:Norma_L1_not}
+			\sum_{i=1}^n x_i
+			\end{equation}
+
+
+
+			\subsubsubsection{Norma euclidiana}	
+			La siguiente fórmula captura el sentido de la longitud del vector $x = (x_1, x_2, ..., x_n)$ en el espacio euclidiano n-dimensional de los números reales $\mathbb{R}^{n}$ \cite{Weisstein2002}:
+			\begin{equation}\label{eq:Norma_L2}
+			\parallel x \parallel_2 := \sqrt {x_{1}^{2}+\cdots +x_{n}^{2}}
+			\end{equation}
+			
+			Esta es la norma euclidiana, que produce la distancia ordinaria entre el origen y el punto X como resultado del teorema de Pitágoras. Este procedimiento también se conoce como ``SRSS'' (del inglés square root of the sum of squares), que representa la raíz cuadrada de la suma de cuadrados \cite{Chopra2007}.
+										
+			
+			\subsubsection{Matriz de confusión}
+			Una tabla de confusión que también es conocida como matriz de confusión es una tabla de dos filas por dos columnas que muestra la cantidad de falsos positivos, falsos negativos, verdaderos positivos y verdaderos negativos. Esto permite un examen más profundo que una simple proporción de clasificaciones correctas. \cite{Bandi2013}
+			
+			\subsubsection{Recall y Precision}
+			El recall o recuperación, es el número de documentos relevantes recuperados dividido por el número total de documentos relevantes existentes, mientras que la precisión es el número de documentos relevantes recuperados dividido por el número total de documentos recuperados por esa búsqueda \cite{Gupta2010}.
+			\begin{equation}\label{eq:Precision}
+			\text{precision}= \frac {|\{{\text{relevant documents}}\}\cap \{{\text{retrieved documents}}\}|}{|\{{\text{retrieved documents}}\}|} = \frac{TP}{TP + FP}
+			\end{equation}
+			\begin{equation}\label{eq:Recall}
+			\text{recall}={\frac {|\{{\text{relevant documents}}\}\cap \{{\text{retrieved documents}}\}|}{|\{{\text{relevant documents}}\}|}} = \frac{TP}{TP + FN}
+			\end{equation}
+
+			
+		\subsection{Marco Conceptual}
+		\subsubsection{Procesamiento}
+		%procesamiento de lenguaje natural
+		El procesamiento del lenguaje natural es el conjunto de métodos para hacer que el lenguaje humano sea accesible a las computadoras. Se basa en muchas tradiciones intelectuales, mejor conocidas como escuelas del pensamiento, desde la lingüística formal hasta la física estadística. Sus aplicaciones tienen fundamento en un conjunto común de ideas, basadas en algoritmos, lingüística, lógica, estadística y más. \cite{Eisenstein2019}
+		
+		%ML
+		Según \cite{Siddique2021} el aprendizaje automático (ML Machine Learning en inglés) se considera un componente de la inteligencia artificial puesto que es el estudio de los sistemas informáticos que pueden mejorarse a sí mismos automáticamente en función de la experiencia y los datos. Los algoritmos de aprendizaje automático construyen un modelo utilizando datos de muestra, denominados "datos de entrenamiento", con el fin de hacer predicciones o juicios sin estar programados explícitamente para hacerlo.
+		Sin embargo esta definición no está completamente bien, pues los sistemas informáticos no se mejoran a si mismos, sino que mejoran su desempeño en una tarea específica dada una métrica.
+	
+		%texto no estructurado
+		Los datos no estructurados son datos que carecen de un modelo de datos predefinido o que no está organizada de una manera predefinida. Los datos no estructurados suelen tener mucho texto, aunque también pueden incluir datos como fechas, cifras y hechos. Esto provoca anomalías y ambigüedades que hacen que los programas tradicionales sean más difíciles de comprender en comparación con los datos guardados en forma de campo en bases de datos o anotados (etiquetados semánticamente) en documentos \cite{Deokar2021}.
+
+		\subsubsection{Lenguaje Natural}
+		%lenguaje
+		El lenguaje es la capacidad natural del hombre para comunicarse, se asocia a su naturaleza social y tiene una base simbólica que se substituye con los signos del mismo sistema, dichos sistemas de signos son numerosos y se les conoce como idiomas; los idiomas son conjuntos de signos que tienen la posibilidad de conformar palabras o frases, estas palabras realizan alusión a sonidos que se refieren a conceptos que trabajan con signos con normas lingüísticas; el símbolo lingüístico se conforma por un significante y un sentido; un símbolo reemplaza a los conceptos, empero no posee interacción directa con la cosa a la que hace referencia, por lo cual el símbolo lingüístico se lo dá la persona que lo usa, a esto se le llama ``lengua''. \cite{Pelayo2001}
+		
+		%lingüistica
+		El estudio científico del lenguaje se conoce como lingüística. Examina todas las facetas del lenguaje, así como las herramientas para analizarlo y modelarlo.\cite{Halliday2003}
+		
+		La fonética, la fonología, la morfología, la sintaxis, la semántica y la pragmática son los campos clásicos del análisis del lenguaje. Cada uno de estos dominios generalmente se correlaciona con fenómenos observados en los sistemas lingüísticos humanos: sonidos, gestos, unidades mínimas como lo son las palabras y los morfemas, frases y oraciones, y significado y uso.\cite{Akmajian2010}
+		
+		%semántica
+		Según \cite{Saeed2011}, la semántica es el estudio del significado de las palabras y las oraciones de tal forma que es de los campos más diversos dentro de la lingüística además de estar relacionado con otras disciplinas, como la filosofía y la psicología, que también investigan la creación y transmisión de significado.		
+
+		%similaridad semantica
+		La similitud semántica se refiere al grado de asociación entre dos palabras \cite{Butz2011}, y es una medida de confianza que refleja la relación semántica entre el significado de dos oraciones. Debido a que la semántica exacta solo se puede entender completamente bajo ciertas circunstancias, es difícil obtener una puntuación de precisión alta \cite{Sombattheera2013}. 
+			
+		La determinación de la similitud semántica generalmente la realizan los humanos, pero esta es una tarea complicada para las computadoras. Se dice que los humanos juzgan la relación de los textos no solo en base a las palabras. Reconocer similitudes requiere un razonamiento más profundo que manipular conceptos. La medida de similitud para los humanos se basa en sus antecedentes y experiencia. El lenguaje no es solo una colección de caracteres diferentes, sino que también se basa en una cultura que afecta la diversidad y sutileza de palabras semánticamente similares \cite{Butz2011}.			
+
+		%lenguaje natural
+		Un lenguaje natural o lenguaje ordinario es cualquier lenguaje que ha evolucionado orgánicamente en los seres humanos a través del uso y la repetición sin una planificación deliberada o premeditación. Los lenguajes naturales pueden tomar varias formas, incluido el habla y las señas. Se diferencian de los lenguajes formales y construidos, que se utilizan para programar computadoras o estudiar lógica. \cite{Lyons1991}
+		
+		
+		\subsubsection{Legal}
+		%sistema jurídico mexicano	
+		Al sistema jurídico además se le llama orden jurídico ya que es la unidad representativa de un territorio bajo el estado de derecho; Se dice que el orden jurídico consta de una serie de normas, reglas, principios e instituciones interconectadas. \cite{Baron2009}
+		
+		%ley
+		%ley		
+		La norma jurídica es norma de conducta obligatoria y sancionada por el poder público. En México, país federal confluyen diversas leyes con ámbitos de competencia diferentes, hay leyes federales, estatales y municipales. Las leyes son producto de la función legislativa del Congreso y están constituidas por una manifestación de voluntad encaminadas a producir efectos de derecho, es decir la ley sustancialmente constituye un acto jurídico. \cite{PorrasZarate2021}
+
+		%entidades federativas
+		De acuerdo con el artículo 40 de la CPEUM, México se constituye como una república representativa, democrática, laica y federal, integrada por 32 estados libres y soberanos (lo que se entiende por entidad federativa) en todo lo concerniente a su régimen interno y se encuentra unido en una federación desde la Ciudad de México.\cite{CPEUM2020}
+				
+		%derecho comparado
+		El derecho comparado se basa en la comparación de las distintas soluciones que ofrecen los distintos ordenamientos jurídicos federales, estatales o municipales para los mismos casos, por lo que es evidente que no se trata de una rama del derecho, sino de un método de análisis jurídico.\cite{Somma2006}
+		
+		El derecho comparado se puede aplicar a cualquier campo del derecho mediante la realización de estudios específicos de determinadas instituciones. Este tipo de análisis se conoce como microcomparativo. Sin embargo, cuando se examinan las diferencias estructurales entre dos sistemas legales, se denomina análisis macrocomparativo.\cite{Velazco2016}
+		
+		%lenguaje legal
+		El lenguaje legal es un lenguaje que expresa las normas de conducta, y es el lenguaje de leyes y decretos. En otras palabras, el poder legislativo es el emisor del lenguaje jurídico y de la administración pública.\cite{Toral2003}
+				
+		Es la principal herramienta para los profesionales del derecho, y se puede decir que no hay ley sin lenguaje. Es una herramienta de difusión de la ley y permite su registro permanente. La difusión y el registro son los atributos principales de la disciplina. La particularidad del registro hace que sólo unas pocas personas puedan conducir la ley. Este hecho se suma a la complejidad del sistema legal y coloca a ciertos grupos sociales en desventaja ante la ley. \cite{Albi2000}     
+		
+		
+		\subsection{Estado del arte}
+		%Este apartado se cubren las investigaciones enfocadas a los métodos de NLP y clustering similares a las de nuestro propósito.
+		A continuación se presenta una reseña de trabajos que existen actualmente en la literatura, relacionados con el enfoque que se presenta en este trabajo; mediante el uso de NLP, clustering y otros métodos en vista a desarrollar herramientas que ayuden en la labor jurídica
+		
+		%Este apartado se separa en la sección de investigaciones enfocadas a los métodos de NLP y clustering y en la sección de investigaciones que hablan sobre aplicaciones de aprendizaje automático con procesos legales.
+			
+			\subsubsection{Text Similarity in Vector Space Models: A Comparative Study}
+			%referencia completa
+			Shahmirzadi, O., Lugowski, A., \& Younge, K. (2019, December). Text similarity in vector space models: a comparative study. In 2019 18th IEEE International Conference On Machine Learning And Applications (ICMLA) (pp. 659-666). IEEE.			
+			
+			%objetivo del paper
+			El objetivo de este trabajo es medir la similitud de patentes. La similitud de patente a patente tiene múltiples usos, incluida la toma de decisiones sobre la presentación de patentes, la estimación de la posibilidad de varios tipos de rechazos de patentes y la proyección del área de innovación.
+			
+			%muestra
+			Los datos que se recopilaron desde enero de 1976 hasta enero de 2018. la Patent Research Foundation (\url{https://www.patrf.org}) proporcionó un corpus de todas las patentes disponibles públicamente de la Oficina de Patentes y Marcas de los Estados Unidos (USPTO).
+			
+			%métodos utilizados
+			Se vectorizaron los títulos, resúmenes y descripciones con los siguientes modelos:
+			
+			\begin{itemize}
+				\item TFIDF simple
+				
+				\item TFIDF incremental
+				
+				\item TFIDF con aumento de frase
+				
+				\item LSI
+				
+				\item D2V
+				
+			\end{itemize}
+			
+			%resultados
+			Todos los modelos siempre superan a un modelo TFIDF simple en cada caso, sin embargo, el porcentaje de mejora es pequeño en la mayoría de las circunstancias, aparte de la comparación de similitudes basada en títulos con una distinción extremadamente fácil. Además, en todas las circunstancias, el tiempo de ejecución para el método óptimo es al menos dos órdenes de magnitud más alto (quiere decir que tarda más) que el TFIDF de referencia (el simple). 
+			
+			%conclusiones
+			Se encontró que el TFIDF simple, considerando su desempeño y costo, es una opción sensata. El uso de métodos más complejos que pueden requerir un ajuste extenso, como LSI y D2V, solo se justifica si el texto está muy condensado y la tarea de detección de similitudes es relativamente burda. Además, las extensiones del TFIDF de referencia, como la adición de n-gramos o idfs incrementales, no parecen ser beneficiosas.			
+			
+			\subsubsection{Natural language processing methods for knowledge management—Applying document clustering for fast search and grouping of engineering documents}
+			%referencia completa
+			Arnarsson, I. Ö., Frost, O., Gustavsson, E., Jirstrand, M., \& Malmqvist, J. (2021). Natural language processing methods for knowledge management—Applying document clustering for fast search and grouping of engineering documents. Concurrent Engineering, 1063293X20982973.
+			
+			%objetivo del paper
+			El objetivo es automatizar parcialmente la búsqueda y exploración de los diseñadores para que el tiempo dedicado a este trabajo se reduzca en gran medida y se centren en evaluar y aprender de los resultados de búsqueda.
+			
+			%muestra
+			La investigación se basa en una base de datos de desarrollo de productos que contiene solicitudes de cambio de ingeniería de programas reales de desarrollo de productos de vehículos comerciales dentro de una organización.
+			
+			%métodos utilizados
+			Utilizaron doc2vec para la representación vectorial de los documentos, esto es un desarrollo posterior al método word2vec.
+			Para el clustering utilizaron el método Latent Dirichlet Allocation (LDA)
+			
+			%resultados 
+			Se evaluaron tres búsquedas, cada una con cinco grupos. Cada grupo se etiquetó con siete etiquetas que describían el grupo. El número de etiquetas y grupos para cada consulta se puede establecer en el momento de la consulta. Las etiquetas se crearon mediante el método de agrupación de documentos (es decir, LDA) y deben resumir las frases clave más importantes asociadas con las agrupaciones.
+			Cada grupo contenía cuatro informes que fueron examinados por un experto corporativo para decidir si pertenecían o no al grupo. Los cuatro textos de cada uno de los tres grupos se evaluaron en términos de su relevancia para sus respectivos grupos.
+			
+			%conclusiones
+			En general, las metodologías de agrupación de documentos y NLP parecen complementarse de forma eficaz cuando se trata de localizar y agrupar documentos relacionados en una base de datos de solicitudes de cambio de ingeniería. Las consultas de búsqueda utilizadas consistían en una palabra para proporcionar a los consumidores una dirección clara sobre la información que querían recuperar. La técnica se probó en una base de datos de solicitudes de cambio de ingeniería y, hasta ahora, no han descubierto limitaciones en la inclusión de nuevas bases de datos en la canalización del servicio de búsqueda.
+			
+			\subsubsection{EnsLM: Ensemble Language Model for Data Diversity 		by Semantic clustering}
+			%referencia completa
+			Duan, Z., Zhang, H., Wang, C., Wang, Z., Chen, B., \& Zhou, M. (2021, August). EnsLM: Ensemble language model for data diversity by semantic clustering. In Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers) (pp. 2954-2967).
+			
+			
+			%objetivo del paper
+			Ofrecen un modelo mixto de auto codificación temática (mATM) para lograr la agrupación de datos, donde los grupos de datos definidos por el espacio semántico caracterizan la variedad de datos.
+			
+			%muestra
+			Analizaron dos conjuntos de datos de agrupación de documentos de uso frecuente, 20News y R8 \cite{Yao2019} ubicados en \url{https://github.com/yao8839836/text_gcn}
+			
+			20News contiene 18,846 documentos con un tamaño de vocabulario de 61,188 , divididos en un conjunto de formación de 11,314 documentos y un conjunto de prueba de 7,532 documentos. R8 es un subconjunto del conjunto de datos Reuters 21578, que comprende ocho clases y se dividió en 5,485 documentos de capacitación y 2,189 documentos de prueba.
+			
+			%métodos utilizados
+			Usaron el modelo mATM y lo compararon contra los modelos
+			
+			\begin{itemize}
+				\item Raw kmeans
+				
+				\item PCA kmeans
+				
+				\item LDA kmeans
+				
+				\item AVITM kmeans
+				
+				\item PFA kmeans
+				
+				\item Deep clustering 
+				
+				\item DCN
+			\end{itemize}
+			
+			%resultados 
+			Cuantifican el rendimiento de agrupamiento por precisión (AC) e información mutua normalizada (NMI), los cuales son mejores entre más altos sea su valor, porque conocen a priori el grupo al que pertenecen los documentos y establecen el número de agrupamiento como el número de clases. PCA + kmeans supera al kmeans Base porque extrae componentes principales más efectivos. Los tres enfoques del modelado de temas (LDA PFA y AVITM) superan a la PCA gracias al aprendizaje de la semántica de los documentos. La agrupación profunda tiene en cuenta el aprendizaje de funciones y la agrupación en clústeres simultáneamente, lo que da como resultado una mayor CA y NMI.
+			
+			%conclusiones
+			Ofrecen un modelo ATM para inferir clústeres semánticos latentes a partir de corpus de texto sin procesar, que luego combinan con un modelo de lenguaje (LM) con modulación de peso eficiente, lo que produce un EnsLM más potente que se puede extender naturalmente a diferentes LMs.
+						
+			
+			\subsubsection{A Self-Training Approach for Short Text clustering}
+			%referencia completa
+			Hadifar, A., Sterckx, L., Demeester, T., \& Develder, C. (2019, August). A self-training approach for short text clustering. In Proceedings of the 4th Workshop on Representation Learning for NLP (RepL4NLP-2019) (pp. 194-199).
+			
+			%objetivo del paper
+			La técnica que proponen aprende características discriminatorias usando un codificador automático y una incrustación de frases, luego utiliza asignaciones de algoritmos de agrupamiento como supervisión para actualizar los pesos de la red del codificador.
+			
+			%muestra
+			Para sus datos de muestra usan 3 fuentes:
+			\begin{enumerate}
+				\item SearchSnippets: una colección de texto de fragmentos de búsqueda web organizados en ocho categorías.
+				
+				\item Stackoverflow es una colección de contenido del sitio web de preguntas y respuestas. Stackoverflow, que se puso a disposición como parte de una competencia de Kaggle. Este grupo incluye títulos de preguntas de 20 categorías distintas.
+				
+				\item Biomedical, una instantánea de los datos de PubMed de un año proporcionados por BioASQ con el fin de evaluar la indexación semántica biomédica en línea a gran escala.
+																
+			\end{enumerate}
+			    
+			
+			%métodos utilizados
+			Comparan la técnica con las líneas de base de la agrupación de texto corto (STC), como la agrupación de representaciones de TF y TF-IDF, los vectores de pensamiento de omisión (Skip-Thought) y el modelo STC mejor informado, así como el modelo k-means para la agrupación o clustering. 
+			
+			%resultados 
+			Si bien se ha demostrado que las representaciones generales de baja dimensión, como las incrustaciones SIF frecuencia inversa suave (smooth inverse frequency) o de omisión del pensamiento (Skip-Thought), son útiles para la NLP en varias tareas, el ajuste extra fino y el auto entrenamiento conducen a una mayor calidad de clusteren STC. Los resultados de la evaluación demuestran que la tecnica propuesta en este paper supera al modelo STC en todas las medidas menos una.
+			
+			%conclusiones
+			Su modelo STC se basa en una arquitectura de codificador automático que se ha ajustado para la agrupación en clústeres mediante el auto entrenamiento. En comparación con la técnica STC de última generación, su evaluación empírica en tres conjuntos de datos de agrupamiento de texto corto muestra precisiones de rendimiento de al menos 12 por ciento.
+	
+	
+	
+			%\subsubsection{Hierarchical clustering of Words and Application to NLP Tasks }
+			%referencia completa
+			
+			
+			%objetivo del paper
+			
+			%muestra
+			
+			%métodos utilizados
+			
+			%resultados 
+			
+			%conclusiones
+						
+	
+
+		
+		
+		\newpage
+	\section{Capítulo III. Contexto metodológico}
+		\subsection{Diseño}	
+		
+			\subsubsection{Tecnologías utilizadas}
+			Para la implementación de los experimentos realizados en este trabajo se utilizó el lenguaje de programación python porque actualmente es ampliamente utiliado por la comunidad científica en el campo de NLP, IA, Big data etc. por lo que la comunidad de soporte es extensa. Adicionalmente existen muchas herramientas como numpy, scipy, scikit-learn, pandas, matplotlib. A fin de realizar un proyecto que sea escalable con miras a su uso constante se utilizó Apache spark, que permite el procesamiento distribuido y escalable de grandes volúmenes de datos, etc.				
+		
+			\subsubsection{Diseño de la solución}				
+				El código para el análisis de los datos fue desarrollado usando clases que de manera muy simple representan los pasos que se siguieron para el diseño de esta solución.
+							
+				\begin{figure}[H]
+					\includegraphics[width=0.7 \textwidth]{imagenes/modelo/modelo.png}
+					\centering
+					\caption{Clases del modelo de implementación}
+					
+					\label{fig:modelo_clases}
+				\end{figure}			
+				
+				Después se implementaron las combinaciones necesarias  de métodos de representación, métodos de escalación de los datos y métodos de clustering para obtener los resultados correspondientes.
+				Uno los métodos de representación de texto en espacios vectoriales que se utilizó fue el modelo TF IDF como lo indica \cite{Shahmirzadi2019}, que fue el que mejor se desempeñó en su aplicación y se exploraron otros 2 como el word2vec que es mencionado en el documento de \cite{Arnarsson2021} y el count vectorizer que es de los modelos base más sencillos.
+				En general esta solución se basa en otros desarrollos previos a problemas similares que se reducen a representación + clustering tomando como ejemplo el desarrollo de \cite{Duan2021} y de \cite{Hadifar2019}, pero aplicado en este caso al área legal del derecho comparado. 
+				
+				La Figura \ref{fig:modelo_clases} representa la secuencia en la que se ejecutan las clases y definen un modelo diferente dependiendo de los parámetros que se explican a continuación.
+				
+				\subsubsubsection{Clase carga de datos.}
+				En esta clase se definen 3 métodos que cargan en la memoria:
+							
+				\begin{enumerate}
+				\item context\_loader()
+				
+				este método crea el contexto de spark y el contexto de sql que son los métodos que nos ayudarán con el procesamiento paralelo
+				
+				\item leyes\_loader(sc,sqlContext, documentsPath)
+				
+				las leyes que se encuentran en un archivo guardado en la dirección documentsPath se cargan en el contexto de spark para su tratamiento paralelo
+				
+				\item test\_cases\_loader(test\_case)
+				
+				los casos de prueba 1 y 2 fueron provistos por la Lic. Oralia Navarro Blackaller, quien es Abogado Especializado en Secretaría General de Gobierno del Estado de Jalisco y los casos de prueba 3 y 4 fueron construidos de forma heurística, a partir de la información encontrada en el Tesauro Jurídico de la Suprema Corte de Justicia de la Nación \cite{MedellinLuque2014} usando los descriptores del derecho constitucional y de los descriptores de derechos humanos que fueron los que nos parecieron más útiles. Los casos disponibles se describen en el la sección de código \ref{lst:claseLoads}
+				 
+				\end{enumerate}
+				
+				
+				\subsubsubsection{Clase preprocesamiento.}
+				En esta clase se definen 5 métodos:
+			
+				\begin{enumerate}
+					\item data\_case\_mix(test\_case, documents, sc, sqlContext)
+			
+					Esta función recibe el caso de prueba, la base de datos en spark, el contexto de spark y el contexto de sql, lo que hace es añadir el caso de prueba a la base de datos para que de esta manera se incluya dentro de los clusters generados en etapas mas avanzadas del modelo principal
+					
+					\item clean\_data(documents)
+					
+					Esta función limpia los artículos, quitando stopwords, y separando los artículos limpios en tokens.
+					
+					\item ngram\_builder(documents)
+					
+					aquí se añaden ngramas de 2-gramas y de 3-gramas
+					
+					\item test\_case\_flag(documents, test\_case)
+					
+					en esta función se añade una columna donde se coloca un 1 si el artículo en cuestion contiene alguna de las palabras clave del caso de prueba en curso, y un cero en caso contrario, esto ayuda posteriormente en el cálculo de las métricas.
+					
+					\item data\_preprocess(test\_case, documents, sc, sqlContext)
+					
+					esta función es un pipeline que ejecuta todos los métodos anteriores de esta clase y transforma los artículos texto a tokens
+				\end{enumerate}
+						
+					
+				\subsubsubsection{Clase métodos de representación.}
+				Una vez los artículos hayan sido transformados en tokens pueden ser recibidos en la siguiente etapa del modelo.
+				En esta clase se definen 3 métodos que toman como argumento los documentos transformados en tokens y el diccionario llamado ``variables'' 
+			
+				\begin{enumerate}
+					\item count\_vectorizer(documents, **variables)
+					
+					Para este método los parámetros que se utilizan son $vocab\_sizes = [200,400,800]$.
+					
+					\item word\_2\_vec(documents, **variables)
+					
+					Para este método los parámetros que se utilizan son $numb_features_s  = [200,400,800]$.
+					
+					\item tf\_idf(documents, **variables)
+					
+					Para este método los parámetros que se utilizan son $vector_sizes = [200,400,800]$.
+					entre otros que están implementados pero se dejaron con su valor por default por la capacidad de computo que se tenía al momento de correr las pruebas los cuales se pueden encontrar en la rutina \ref{lst:pruebasW2V}.
+					
+				\end{enumerate}			
+				
+				\subsubsubsection{métodos de escalación de los datos.}
+				Estos métodos se encuentran dentro de la clase clustering en el método scaler\_loader(documents, scaler) donde están definidos 5 formas diferentes de escalar los datos que en todos los casos solo necesitan los artículos representados en forma de vector como argumento, estos son los cscalers disponibles $scalers =  ['minmax', 'standar', 'none']$
+			
+				\begin{enumerate}
+					\item min\_max\_s
+					
+					este método se calcula de acuerdo a la ecuación \ref{eq:Min_Max_scaler_entre_a_y_b}
+					
+					\item standar\_s(documents)
+					
+					este método se calcula de acuerdo a la ecuación \ref{eq:Normalizacion_de_valor_Z-score}
+					
+					\item taxicab\_norm\_s(documents)
+					
+					este método se calcula de acuerdo a la ecuación \ref{eq:Norma_L1}
+								
+					\item euclid\_norm\_s(documents)
+					
+					este método se calcula de acuerdo a la ecuación \ref{eq:Norma_L2}
+								
+					\item none\_s(documents)
+					aquí no se calcula nada, solo se pasan los valores con el formato correcto tal y como salen del método de representación.
+				
+				\end{enumerate}			
+					
+				\subsubsubsection{Clase métodos de clustering.}
+				El siguiente paso es formar los clúster, para todos los clusters hace la búsqueda dentro de los siguientes parámetros: $numb\_clusters_s = [20,22,24,26,28,30,32,34,36]$, se tomó este rango a partir de la cantidad de temas que existen dentro de la constitución mexicana que son aproximadamente 21 más los que se deberían clasificar como derogados etcétera, los cuales se listan en el apéndice \ref{appendix:temasCPEUM}
+				
+				En esta clase se definen 5 métodos:
+			
+				\begin{enumerate}
+					\item spark\_df\_2\_pandas(representation\_results)
+					
+					esta función formatea los datos de tal forma que puedan ser procesados en paralelo por el método de spark o para que puedan ser procesados por las funciones de sklearn
+					
+					\item scaler\_loader(documents, scaler)
+					
+					esta función escala los datos para que sean procesados por el método de clúster.
+					
+					\item g\_m\_m(representation\_results, sqlContext, **variables)
+					
+					este método utiliza el parámetro $cov\_types = ['full', 'diag', 'spherical']$
+					
+					\item k\_means(representation\_results, sqlContext, **variables)
+				
+					este método utiliza el parámetro $numIterations\_s = [100]$
+					
+					\item agglomerative(representation\_results, sqlContext, **variables)
+								
+					este método utiliza los parámetros $affs = ['euclidean']$ y $links = ['ward']$
+					
+				\end{enumerate}
+							
+				\subsubsubsection{Evaluación.}
+				Para poder evaluar los modelos se recurrió a una métrica a la medida denominada recall integrado.
+				
+				Ésta métrica en su funcionamiento necesita saber los artículos que contienen una o algunas de las palabras clave. Primero, la forma de determinar este comportamiento fue simplemente identificar y marcar estos artículos. 
+				
+				Después el artículo personalizado que contiene las palabras del caso de prueba, es el que determinará el cluster correcto al que deberán pertenecer los artículos semánticamente similares, descartando los otros clusters.
+				
+				Por último se comparan los resultados de los dos procesos anteriormente descritos, quedando como resultado cuatro categorías: verdaderos positivos TP, verdaderos negativos TN, falsos positivos FP y falsos negativos FN,  con las cuales se calculará el recall integrado usando solo TP y FN; pero antes se deberán agrupar los modelos por características de composición similares como sigue:
+				
+				Al calcular está métrica lo primero es agrupar los modelos por su composición similar en:
+				\begin{enumerate}
+					\item método de representación de texto
+					
+					\item longitud del vector representativo
+					
+					\item scaler o método de normalización y
+					
+					\item método de clustering 
+				\end{enumerate}
+				después de realizar estos filtros, los modelos restantes son los que se diferencian solamente por caso de prueba, ejecutando así la ecuación \ref{eq:recall_integrado}
+					\begin{equation}\label{eq:recall_integrado}
+						recall\_integrado = \frac{\sum_i^n tp_i}{\sum_i^n tp_i + \sum_i^n fn_i}
+					\end{equation}
+	
+					donde:
+					\begin{conditions}
+						\sum_i^n tp_i &  es la sumatoria de todos los verdaderos positivos\\
+						\sum_i^n fn_i &  es la sumatoria de todos los falsos negativos 
+					\end{conditions}
+					Ambas sumatorias se ejecutan sobre los modelos similares en composición pero integrando los diferentes casos de prueba.					
+				
+				En este script se definen 1 métodos:
+				\begin{enumerate}
+				
+					\item test\_case\_evaluator(documents)
+			
+				 Esta función calcula diferentes métricas de clasificación, de las cuales solo se utiliza el recall-score, que aunque el problema no es exactamente de clasificación, sino, de clusterización, pues no se tienen etiquetas de a qué clusterdebería pertenecer un artículo determinado a priori, con ayuda de la columna bandera que se añadió en el paso de preprocesamiento, podemos tener un una relación estimada de los artículos que probablemente deberían estar incluidos en el cluster del caso de prueba.
+				
+				\end{enumerate}
+				
+				Al final de este paso los resultados obtenidos se guardan en un archivo para posterior mente ser recuperados y analizados en conjunto en la siguiente y última etapa.
+							
+				\subsubsubsection{Visualización}
+				Este script es para recuperar los resultados generados previamente y analizarlos en conjunto a través de gráficas y poder determinar como se desempeñaron cada uno de los modelos ejecutados.
+				En este script se definen 4 métodos:
+			
+				\begin{enumerate}
+					\item results\_depth\_1(model\_params, numb\_clusters\_s)
+					
+					\item model\_plot(params\_list, numb\_clusters\_s, titulus)
+					
+					\item tri\_plot(model\_params, numb\_clusters\_s, v\_sizes, scalers, representacion, clust\_model)
+					
+					\item model\_integrado\_plots(representation\_param, res, numb\_clusters\_s, v\_sizes, scalers, representacion)
+				\end{enumerate}	
+		
+			\subsubsection{Enfoque}
+			El  presente trabajo será diseñado bajo el planteamiento metodológico del enfoque cuantitativo, puesto que este es el que mejor se adapta a las características y necesidades de la investigación.
+	
+			La investigación cuantitativa es una técnica de investigación que se centra en cuantificar la recopilación y el análisis de datos. Se basa en métodos lógicos y se inspira en ideologías empiristas que tienen su énfasis en la experiencia y la evidencia, y positivistas que sostiene que todo conocimiento genuino se limita a la interpretación de los hallazgos positivos o reales \cite{Bryman2012}.
+
+			Se quiere medir qué modelo da el mejor resultado en función a la métrica recall integrado por los casos de prueba, los métodos de cluster y escalación y el método de representación para comprobar la hipótesis el derecho comparado puede ser asistido por NLP mediante métodos de representación de datos en espacios vectoriales y de clustering. 
+			
+			
+			\subsubsection{Tipo}
+			Dado que el objetivo del estudio fue analizar qué modelo es el que mejor describe la similaridad semántica entre los artículos de las leyes de los estados de México, se recurrió a un diseño no experimental que se aplicó de manera transversal descriptiva porque se recolectaron los datos en un solo y único momento y se intentó comprobar la hipótesis.
+			
+			Un estudio transversal es un tipo de investigación observacional que investiga datos transversales de una población o un subconjunto representativo en un momento determinado. Se diferencian de los estudios de casos y controles en que buscan datos sobre toda la población en estudio, mientras que los estudios de casos y controles generalmente incluyen solo individuos que han desarrollado una condición específica y los comparan con una muestra emparejada del resto de la población, que es con frecuencia una pequeña minoría. Los estudios descriptivos son investigaciones transversales. A diferencia de los estudios de casos y controles, pueden usarse para describir no solo la razón de probabilidades, sino también los riesgos absolutos y relativos basados en la prevalencia. \cite{Wang2020}
+			
+			\subsubsection{Diseño}
+			Toda la técnica que se utiliza a menudo para llevar a cabo una investigación que describe un plan claro y lógico para enfrentar las preguntas de investigación definidas a través de la recopilación, interpretación, análisis y discusión de datos se conoce como diseño de investigación. Los diseños de investigación no experimentales implican el no manipular el escenario, las condiciones o la experiencia de los participantes. Los diseños de investigación no experimentales pueden clasificarse aproximadamente en 4 tipos: investigación correlacional, comparativa, transversal y longitudinal. \cite{Kumatongo2021}
+			
+			\subsubsection{Modelo}
+			Los datos fueron obtenidos de los artículos de las leyes el día 1ro de agosto del 2020, ubicados en las páginas oficiales de de internet de cada uno de los estados de la república en formato pdf, los cuales se copiaron y pasaron a formato de texto txt, posterior a este paso se manipularon los artículos de tal manera que la entrada a cada uno de estos fuera uniforme y estándar con la cadena de caracteres ``Articulo.-'' pues esta forma tiene muchas variaciones incluso dentro de una misma ley y no fue posible generar la base de datos con las leyes intactas. Además dentro de otros artículos se hacen referencias a otros artículos lo cual también dificultó la extracción y ordenamiento de estos en una base de datos para su posterior análisis.
+			
+			Para poder definir cuál será el mejor modelo se ejecutó un grid search con diferentes parámetros establecidos en un diccionario llamado ``variables'' que contiene los parámetros necesarios para ejecutar todos los modelos, los cuales se definen de acuerdo con la combinación dentro de las rutinas \ref{lst:pruebasCoVe} , \ref{lst:pruebasTfIdf} y \ref{lst:pruebasW2V}.
+			
+			AL principio el diccionario de variables se declara con todos sus atributos en estado ``False'' para después ser iterados según la combinación en curso.             
+		 	\begin{lstlisting}[language=Python, caption = Dicionario de variables]
+			input_dictionary = {'representation': False,
+					              'cluster': False,
+					              'caso': False,
+					              'scaler': False,
+					              'resultados': False,
+					              'vocab_size': False,
+					              'vector_size': False,
+					              'min_count': False,
+					              'max_s_l': False,
+					              'max_iter': False,
+					              'numb_part': False,
+					              'numb_features': False,
+					              'numb_clusters': False,
+					              'cov_type': False,
+					              'numIterations': False,
+					              'aff': False,
+					              'link': False}
+		 	\end{lstlisting}
+								
+	\newpage
+	\section{Capítulo IV. Resultados y discusión o análisis}	
+	
+		\subsection{Experimentos}
+		
+		Para obtener los resultados se optó por la técnica de ``grid search'' que es una búsqueda exhaustiva a través de un subconjunto especificado manualmente del espacio de hiperparámetros de los algoritmos de aprendizaje que se utilizan en este trabajo.
+		
+		El cuadro \ref{tab:vector_space_representation_parameters} muestra los algoritmos que se usaron para la representación del texto en espacios vectoriales y los valores de sus hiperparámetros explorados.
+		\begin{table}[H]
+		\begin{tabular}{c|c|c}
+		Algoritmo       & Parámetro         & Valores de búsqueda \\ \hline
+		CountVectorizer & vocab\_size\_s    & 200,400,800         \\ 
+		Word2Vec        & numb\_features\_s & 200,400,800         \\ 
+		TFIDF           & vector\_size\_s   & 200,400,800         \\ 
+		\end{tabular}
+		\centering
+		\caption{Algoritmos de representación de datos y sus hiperparámetros}
+		\label{tab:vector_space_representation_parameters}
+		\end{table}
+		
+		El cuadro \ref{tab:clustering_parameters} lista los algoritmos de clustering y los hiperparámetros utilizados en el grid search.
+		\begin{table}[H]
+		\begin{tabular}{c|c|c}
+		Algoritmo       & Parámetro         & Valores de búsqueda \\ \hline
+		GMM				& cov\_types    	& full, diag, spherical \\ 
+		Kmeans	        & numIterations\_s	& 100			      \\ 
+		agglomerative   & vector\_size\_s   & aff: euclidean; linkage:ward \\ 
+		\end{tabular}
+		\centering
+		\caption{Algoritmos de clustering y sus hiperparámetros}
+		\label{tab:clustering_parameters}
+		\end{table}
+		
+		Para el número de grupos que buscan los algoritmos de clustering se utilizaron 20, 22, 24, 26, 28, 30, 32, 34 y 36 grupos, esta decisión derivada del mínimo número de temas como ya se explicó en secciones anteriores, así como los casos de prueba denominados como ``caso1'', ``caso2'', ``caso3'' y ``caso4''.
+		
+		Todos estos parámetros y sus valores son los que conforman el espacio de hiperparámetros de los algoritmos de aprendizaje que se utilizan en este trabajo.
+		
+		\subsection{Características del sistema}
+		Los experimentos fueron ejecutados en un sistema cuyas características se muestran en el cuadro\ref{tab:sistema_caracteristicas}	
+		\begin{table}[H]
+			\includegraphics[width=0.7\textwidth]{imagenes/sistema_caracteristicas.png}
+			\centering
+			\caption{Características del sistema}
+			\label{tab:sistema_caracteristicas}
+		\end{table}
+		
+		También se utilizó python como lenguaje de programación y los paquetes descritos en el cuadro \ref{tab:pack_version}.
+		\begin{table}[H]
+		\begin{tabular}{c|c}
+		Paquete			& versión   \\ \hline
+		Python			& 3.8.5		\\ 
+		pyspark	        & 3.0.1		\\ 
+		sklearn			& 0.24.2	\\ 
+		pandas			& 1.3.2		\\
+		conda			& 4.10.3	\\ 
+		pip				& 21.0.1	\\
+		\end{tabular}
+		\centering
+		\caption{Paquetes y versión}
+		\label{tab:pack_version}
+		\end{table}
+		
+		\subsection{Tiempos de ejecución}
+		El tiempo de ejecución para cada experimento corrido desde las rutinas \ref{lst:pruebasCoVe}, \ref{lst:pruebasTfIdf} y \ref{lst:pruebasW2V} fue de aproximadamente 12 horas cada una dando un total de 36 horas invertidas en las pruebas finales.
+		
+		\subsection{Resultados de los experimentos}		
+		Para escoger el modelo que utiliza la mejor combinación de métodos propuestos en el grid search se recurrió a la métrica de recall integrado. El objetivo de esta métrica es captar los comportamientos de todos los casos de prueba y de esta manera evitar el overfiting o sobre ajuste que se produciría al tomar en cuenta uno solo de los modelos para solo uno de los casos de prueba.
+		
+		Para los modelos que usan un modelo de clustering GMM, no se utiliza el método de estandarización ``standar´´ puesto que el algoritmo trabaja fundamental con las distribuciones inherentes a los datos y aplicar este método de estandarización destruiría completamente este comportamiento, dejando los resultados del modelo de clustering GMM inservibles.
+		
+		Se exploraron 72 gráficas compuestas por el recall integrado de cada uno de los modelos que se proponen, estas gráficas se agrupan por tipo de representación de texto y por tipo de clustering, dando como resultado 9 gráficas en las cuales se muestra el comportamiento del desempeño en conjunto las cuales se muestran en las siguientes secciones.
+		
+		\subsubsection{Count Vectorizer}		
+		En la figura\ref{fig:count_vectorizer_results} se observa que los resultados de la figura \ref{fig:cv_gmm_vocab_scal_9} referente al modelo gmm, todos son menores a 0.6 de la métrica de recall integrado, por lo que solo algunos modelos de agglometive clustering y de k means podrían ser validos como modelos potenciales.
+			\begin{figure}[h]
+			\centering\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/c_v_agg_vocab_scal_9_plot.png} 
+				\caption{\label{fig:cv_agg_vocab_scal_9}Agglomerative clustering} 
+			\end{subfigure}\hfill
+			\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/c_v_gmm_vocab_scal_9_plot.png} 
+				\caption{\label{fig:cv_gmm_vocab_scal_9}GMM clustering} 
+			\end{subfigure}\vspace{10pt}
+			
+			\begin{subfigure}[b]{\linewidth} 
+				\centering\includegraphics[width=.5\linewidth]{imagenes/results/c_v_kmn_vocab_scal_9_plot.png} 
+				\caption{\label{fig:cv_kmn_vocab_scal_9}Kmeans clustering} 
+			\end{subfigure} 
+			\caption{Resultados de las gráficas de representación CountVectorizer} 
+			\label{fig:count_vectorizer_results}
+			\end{figure} 		
+					
+		\subsubsection{TF IDF}
+		En todos los modelos de la figura \ref{fig:tf_idf_results} se puede ver el pobre desempeño que tuvieron por lo tanto ninguno de estos modelos es potencialmente elegible para esta aplicación.
+			\begin{figure}[h]
+			\centering\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/tf_idf_agg_vocab_scal_9_plot.png} 
+				\caption{\label{fig:tfidf_agg_vocab_scal_9}Agglomerative clustering} 
+			\end{subfigure}\hfill
+			\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/tf_idf_gmm_vocab_scal_9_plot.png} 
+				\caption{\label{fig:tfidf_gmm_vocab_scal_9}GMM clustering} 
+			\end{subfigure}\vspace{10pt}
+			
+			\begin{subfigure}[b]{\linewidth} 
+				\centering\includegraphics[width=.5\linewidth]{imagenes/results/tf_idf_kmn_vocab_scal_9_plot.png} 
+				\caption{\label{fig:tfidf_kmn_vocab_scal_9}Kmeans clustering} 
+			\end{subfigure} 
+			\caption{Resultados de las gráficas de representación TF IDF} 
+			\label{fig:tf_idf_results}
+			\end{figure} 		
+						
+		\subsubsection{Word to Vec}
+		En el conjunto de figuras \ref{fig:w_2_v_results} solo algunos de los modelos de la figura \ref{fig:w2v_kmn_vocab_scal_9} son elegibles como potenciales mejores modelos.
+		
+		En este momento podemos concluir por las gráficas hasta ahora observadas que todos los modelos que se constituyen por un modelo de distribuciones gaussianas mixtas o gmm, no tienen en general un buen desempeño para nuestra aplicación, por lo que podemos inferir que las distribuciones de los datos de texto representados en espacios vectoriales no son compatibles con esta técnica. 
+			\begin{figure}[h]
+			\centering\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/w_2_v_agg_vocab_scal_9_plot.png} 
+				\caption{\label{fig:w2v_agg_vocab_scal_9}Agglomerative clustering} 
+			\end{subfigure}\hfill
+			\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/w_2_v_gmm_vocab_scal_9_plot.png} 
+				\caption{\label{fig:w2v_gmm_vocab_scal_9}GMM clustering} 
+			\end{subfigure}\vspace{10pt}
+			
+			\begin{subfigure}[b]{\linewidth} 
+				\centering\includegraphics[width=.5\linewidth]{imagenes/results/w_2_v_kmn_vocab_scal_9_plot.png} 
+				\caption{\label{fig:w2v_kmn_vocab_scal_9}Kmeans clustering} 
+			\end{subfigure} 
+			\caption{Resultados de las gráficas de representación Word to Vec} 
+			\label{fig:w_2_v_results}
+			\end{figure}
+		
+		
+		\subsection{Selección de Modelos}
+		Para ayudarnos en la selección del mejor modelo se recurrió al análisis de las 15 graficas que presentaron el mejor desempeño de acuerdo con nuestra métrica recall integrado, además de excluir las gráficas que presentaban discontinuidades producto de modelos que no llegaron a concluir resultados por cuestiones de convergencia. En la figura \ref{fig:top_15_drop_na_todos} se pueden ver todos estos comportamientos juntos, pero las analizaremos por grupos en las secciones \ref{sec:x_tamaño_representación},  \ref{sec:x_metodo_clustering} y \ref{sec:x_metodo_scaler}.
+
+		\begin{figure}[htp]
+			\includegraphics[width=0.9 \textwidth]{imagenes/results/top_15_drop_na_todos.png}
+			\centering
+			\caption{Top 15 drop na todos}
+			
+			\label{fig:top_15_drop_na_todos}
+		\end{figure}
+		
+		
+		\subsubsection{Modelos por tamaño del vector de representación}
+		\label{sec:x_tamaño_representación}
+		En el conjunto de figuras \ref{fig:by_v_sizes} se puede observar cómo para un tamaño de vector de 200 tokens que corresponde a la figura \ref{fig:v_sizes_200} y para un tamaño de vector de 800 tokens que corresponde a la figura \ref{fig:v_sizes_800} las variaciones de modelo a modelo son muy drásticas encontrándose en cualquiera de estas dos graficas con variaciones de extremo a extremo, en contraste con las gráficas de los modelos con tamaño del vector de representación de 400 correspondiente a la figura \ref{fig:v_sizes_400} en la que se observan gráficas más suaves con solo 1 pico como valor más grande o de mejor desempeño, o solo 1 punto de inflexión.
+		
+		También se puede observar cómo las gráficas de la figura \ref{fig:v_sizes_800} tienen comportamientos consistentes tomando solo en cuenta el tamaño de su vector de representación o lo que es lo mismo la cantidad de tokens representados en un vector sin tomar en cuenta método de estandarización de estos vectores ni técnica de clustering.
+			\begin{figure}[htp]
+			\centering\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_v_sizes_200.png} 
+				\caption{\label{fig:v_sizes_200}Tamaño de vector de representación de 200} 
+			\end{subfigure}\hfill
+			\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_v_sizes_400.png} 
+				\caption{\label{fig:v_sizes_400}Tamaño de vector de representación de 400} 
+			\end{subfigure}\vspace{10pt}
+			
+			\begin{subfigure}[b]{\linewidth} 
+				\centering\includegraphics[width=.5\linewidth]{imagenes/results/top_15_drop_na_v_sizes_800.png} 
+				\caption{\label{fig:v_sizes_800}Tamaño de vector de representación de 800} 
+			\end{subfigure} 
+			\caption{Top 15 drop na por tamaño del vector de representación} 
+			\label{fig:by_v_sizes}
+			\end{figure}
+				
+		\subsubsection{Modelos por métodos de clustering}
+		\label{sec:x_metodo_clustering}
+		En el set de figuras \ref{fig:by_clustering} las que se observan más suaves son las relacionadas a una técnica de agglomeartive clustering correspondientes a la figura \ref{fig:top_15_drop_na_agg}, sin embargo en los otros métodos también se observan consistencias  en los comportamientos como patrones más definidos pero aún igual de dispersos que los modelos de las figuras  \ref{fig:v_sizes_200} y \ref{fig:v_sizes_800}.
+			\begin{figure}[htp]
+			\centering\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_agg.png} 
+				\caption{\label{fig:top_15_drop_na_agg}Método agglomerative} 
+			\end{subfigure}\hfill
+			\begin{subfigure}[b]{0.5\linewidth} 
+				\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_gmm.png} 
+				\caption{\label{fig:top_15_drop_na_gmm}Método GMM} 
+			\end{subfigure}\vspace{10pt}
+			
+			\begin{subfigure}[b]{\linewidth} 
+				\centering\includegraphics[width=.5\linewidth]{imagenes/results/top_15_drop_na_kmeans.png} 
+				\caption{\label{fig:top_15_drop_na_kmeans}Método kmeans clustering} 
+			\end{subfigure} 
+			\caption{Top 15 drop na por método de clustering} 
+			\label{fig:by_clustering}
+			\end{figure}
+					
+			\subsubsection{Modelos por métodos de normalización}
+			\label{sec:x_metodo_scaler}
+			En general los patrones de comportamiento se observan en las gráficas de la figura \ref{fig:by_scaler} lo que sugiere que la influencia de los método de escalación o normalización de los datos tiene un impacto significativo en los resultados.
+				\begin{figure}[htp]
+				\centering\begin{subfigure}[b]{0.5\linewidth} 
+					\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_none.png} 
+					\caption{\label{fig:top_15_drop_na_none}Sin  método de escalación} 
+				\end{subfigure}\hfill
+				\begin{subfigure}[b]{0.5\linewidth} 
+					\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_minmax.png} 
+					\caption{\label{fig:top_15_drop_na_minmax}Método de escalación minmax} 
+				\end{subfigure}\vspace{10pt}
+				
+				\begin{subfigure}[b]{\linewidth} 
+					\centering\includegraphics[width=.5\linewidth]{imagenes/results/top_15_drop_na_standar.png} 
+					\caption{\label{fig:top_15_drop_na_standar}Método de escalación standar} 
+				\end{subfigure} 
+				\caption{Top 15 drop na por método de escalación o normalización} 
+				\label{fig:by_scaler}
+				\end{figure}
+									
+			\subsubsection{Modelos por métodos de representación}
+			\label{sec:x_metodo_representacion}
+			Sin embargo el mayor de todos los impactos en los modelos fue el método de representación sin importar el tamaño del vector o número de tokens como lo muestra la figura \ref{fig:by_representacion}.
+				\begin{figure}[htp]
+				\centering\begin{subfigure}[b]{0.5\linewidth} 
+					\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_cv.png} 
+					\caption{\label{fig:top_15_drop_na_cv}Método de representación Count Vectorizer} 
+				\end{subfigure}\hfill
+				\begin{subfigure}[b]{0.5\linewidth} 
+					\centering\includegraphics[width=1\linewidth]{imagenes/results/top_15_drop_na_w2v.png} 
+					\caption{\label{fig:top_15_drop_na_w2v}Método de representación Word to Vec} 
+				\end{subfigure}
+				
+				\caption{Top 15 drop na por método de representación} 
+				\label{fig:by_representacion}
+				\end{figure}
+				
+			Una pequeña estadística de los 15 comportamientos presentados en esta sección se presenta en el cuadro \ref{tab:top_15_resumen_estadísticas}.
+			 
+		%En general de las 15 gráficas que se han analizado hasta este momento 
+		\begin{table}[H]
+		\begin{tabular}{cc}
+		\multicolumn{1}{c|}{Cantidad}              & Valor                         \\ 
+		\multicolumn{2}{c}{Por tamaño del vector de representación}               \\ \hline
+		\multicolumn{1}{c|}{5}                     & 800                           \\ 
+		\multicolumn{1}{c|}{4}                     & 400                           \\ 
+		\multicolumn{1}{c|}{6}                     & 200                           \\ 
+		\multicolumn{2}{c}{Por técnica de representación vectorial}               \\ \hline
+		\multicolumn{1}{c|}{12}                    & count vectorizer              \\ 
+		\multicolumn{1}{c|}{3}                     & word to vec                   \\ 
+		\multicolumn{1}{c|}{0}                     & tf idf                        \\ 
+		\multicolumn{2}{c}{Por técnica de clustering}                             \\ \hline
+		\multicolumn{1}{c|}{6}                     & k means                       \\ 
+		\multicolumn{1}{c|}{4}                     & agglomerative                 \\ 
+		\multicolumn{1}{c|}{5}                     & GMM                           \\ 
+		\multicolumn{2}{c}{Por técnica de estandarización o esacalación de datos} \\ \hline
+		\multicolumn{1}{c|}{6}                     & sin escalar datos             \\ 
+		\multicolumn{1}{c|}{6}                     & minmax                        \\ 
+		\multicolumn{1}{c|}{3}                     & standar                       \\ 
+		\end{tabular}
+		\centering
+		\caption{top 15 resumen estadísticas}
+		\label{tab:top_15_resumen_estadísticas}
+		\end{table}
+		
+		Para concluir después de analizar estas gráficas se proponen dos modelos como mejor modelo con los siguientes parámetros:
+		
+		\begin{enumerate}
+			\item Técnica de representación Word to Vec, tamaño de vector 800, escalación de datos tipo minmax, k means como técnica de clustering y 26 clusters.
+			
+			\item Técnica de representación count vectorizer, tamaño de vector 400, escalación de datos tipo minmax y agglomerative clustering como técnica de clustering con 32 clusters.
+			
+		\end{enumerate}
+						 
+			
+
+	\newpage
+	\section{Conclusiones}
+	\subsection{Conclusiones}
+		En este trabajo evaluamos modelos de NLP con diferentes técnicas de representación vectorial y diferentes métodos de clustering aplicado al problema del derecho comparado para asistir en este proceso con la ayuda de las tecnologías de la información para el análisis de datos. 
+		Comparamos los modelos de representación de datos word to vec, tf-idf y count vectorizer, con los métodos de cluster Kmeans, Agglomerative clustering y modelos de distribuciones gaussianas mixtas.
+		
+		Probamos los modelos con casos de prueba variados, provistos por un profesional de la materia legal y de un tesauro jurídico. 
+		Elegimos un modelo que evade el problema de sobre ajuste con base en una métrica integrada de recall.
+		
+		Para responder a las preguntas de investigación se concluye que definitivamente un método de representación tf idf no es recomendable para esta aplicación, sin embargo word to vec y count vectorizer demostraron ser más eficientes.
+		
+		Las técnicas de escalación de datos afectan los resultados significativamente, los modelos que no fueron estandarizados o normalizados tuvieron más variación en el desempeño y aunque la técnica minmax también tuvo sus variaciones logró identificar modelos eficientes.
+						
+		Los métodos de clustering k means y agglomerative clustering, lograron buen desempeño, siendo agglomerative clustering la técnica que representaba un comportamiento más suave en sus gráficas en comparación con k means. Sin embargo GMM se desempeño pobremente.
+		
+		Aunque nuestras conclusiones se basan en experimentos realizados con los artículos de las constituciones políticas de todos los estados unidos mexicanos, creemos que puede ser generalizado para otros corpus de normas, reglamentos o materias legales.
+		
+		No se encontraron en la literatura, otros estudios similares con aplicación al corpus del área legal, por lo que el presente trabajo pretende sentar un precedente en el campo, con un documento que se encuentra en preparación.
+		El alcance del presente trabajo se limitó a la selección de los métodos mostrados previamente, por dos razones: 
+		
+		1)debido a su uso demostrado en trabajos anteriores con problemáticas similares, 
+		
+		2) Fue necesario acotar el proceso de experimentación al conjunto de métodos seleccionados,  debido a la complejidad y costo computacional de implementar modelos con una mayor variedad de métodos e hiperparámetros.
+		
+	\subsection{Trabajo futuro}
+	
+		%para mejorar la especificidad hacer fine tuning de los parametros
+	
+		Este estudio puede extenderse a futuras investigaciones en diferentes caminos teóricos o prácticos. Observamos que el modelo tf idf, fue el método que obtuvo el peor desempeño en todas las pruebas, y que el modelo word to vec fué el que requirió más tiempo en entrenar. El modelo tf idf no fue el mejor pero tiene muchas variantes que se pueden explorar, así como otros modelos de representación y otras métricas de similaridad. Ademas estudiar el efecto que produce la escalación de datos con diferentes métodos, introduce otra dimensión para trabajos futuros. 
+		También hay mejoras que se pueden añadir al preprocesamiento de los datos, así como la exploración de un espacio de hiperparámetros mas amplio para el ajuste fino a los modelos. 
+		Por último, la introducción de métodos no supervisados mejores o más sofisticados como lo son las redes neuronales así como entender las limitaciones de los métodos aquí implementados en el contexto legal son áreas muy interesantes para la investigación.
+		
+	
+	%\newpage
+	%\section{Anexos}
+		
+	
+	
+	%	\newpage
+	%\section*{Notas}
+	
+	
+	
+	\newpage
+	\listoffigures
+	\listoftables
+	\lstlistoflistings
+	\clearpage
+	
+	
+	
+	\clearpage
+	
+	\renewcommand{\baselinestretch }{1.5}	
+	\bibliographystyle{apalike}
+	\bibliography{TesisBIB}
+	
+	\newpage
+	
+	
+	\appendix
+	\section{Temas en la constitución política}
+	\label{appendix:temasCPEUM}
+		\begin{enumerate}
+			\item Título Primero 
+				\begin{itemize}
+					\item Capítulo I De los Derechos Humanos y sus Garantías
+					
+					\item Capítulo II De los Mexicanos
+					
+					\item Capítulo III De los Extranjeros
+					
+					\item Capítulo IV De los Ciudadanos Mexicanos
+				\end{itemize}
+			
+			
+			\item Título Segundo 
+				\begin{itemize}
+					\item Capítulo I De la Soberanía Nacional y de la Forma de Gobierno
+								
+					\item Capítulo II De las Partes Integrantes de la Federación y del Territorio Nacional
+				\end{itemize}
+			
+			\item Título Tercero
+			
+				\begin{itemize}
+					\item Capítulo I De la División de Poderes
+					
+					\item Capítulo II Del Poder Legislativo
+					
+						\begin{itemize}										
+							\item Sección I De la Elección e Instalación del Congreso
+							
+							\item Sección II De la Iniciativa y Formación de las Leyes
+							
+							\item Sección III De las Facultades del Congreso
+							
+							\item Sección IV De la Comisión Permanente
+							
+							\item Sección V De la Fiscalización Superior de la Federación 
+						\end{itemize}
+	
+					
+					\item Capítulo III Del Poder Ejecutivo
+					
+					\item Capítulo IV Del Poder Judicial
+				\end{itemize}
+	
+			
+			\item Título Cuarto De las Responsabilidades de los Servidores Públicos, Particulares Vinculados con Faltas Administrativas Graves o Hechos de Corrupción, y Patrimonial del Estado.
+			
+			\item Título Quinto De los Estados de la Federación y de la Ciudad de México 
+			
+			\item Título Sexto Del Trabajo y de la Previsión Social
+			
+			\item Título Séptimo Prevenciones Generales
+			
+			\item Título Octavo De las Reformas de la Constitución
+			
+			\item Título Noveno De la Inviolabilidad de la Constitución
+			
+		\end{enumerate}
+	
+	\section{Rutinas}	
+	\subsection{Main, rutina principal)}
+	\begin{lstlisting}[language=Python, caption= Main]
+	from analisys.models import Model
+	import pickle
+	
+	
+	def main():
+	
+	documentsPath = "../todasLasLeyes.csv"
+	
+	
+	
+	with open('../variables.txt', 'rb') as f:
+	variables = pickle.load(f)
+	
+	
+	print(variables["representation"], variables["cluster"], variables["scaler"], variables["cov_type"])
+	modelo = Model()
+	r = modelo.switcher(documentsPath, **variables)
+	
+	file = open('../results/w_2_v/res_' + str(variables["resultados"]) + '.txt', 'wb')
+	pickle.dump(r, file)
+	file.close()
+	
+	if __name__ == "__main__":
+	main()
+	\end{lstlisting}
+	
+	\subsection{Pruebas de Count Vectorizer}	
+	\begin{lstlisting}[language=Python, 
+	caption = Rutina de pruebas CountVectorizer,
+	label={lst:pruebasCoVe}]
+	
+	import pandas as pd
+	import pickle
+	import os
+	
+	representation_technic = ["CountVectorizer","Word2Vec","TFIDF"]
+	cluster_technic = ["GMM","Kmeans","agglomerative"]
+	scalers =  ['minmax', 'standar', 'none']
+	casos = ["caso1", "caso2", "caso3", "caso4"]
+	
+	#count_vectorizer
+	vocab_sizes = [200,400,800]
+	
+	#ALL Clusters
+	numb_clusters_s = [20,22,24,26,28,30,32,34,36]
+	#agglomerative
+	affs = ['euclidean']
+	links = ['ward']
+	#g_m_m
+	cov_types = ['full', 'diag', 'spherical']
+	#k_means
+	numIterations_s = [100]
+	
+	input_dictionary = {'representation': False,
+	'cluster': False,
+	'caso': False,
+	'scaler': False,
+	'resultados': False,
+	'vocab_size': False,
+	'vector_size': False,
+	'min_count': False,
+	'max_s_l': False,
+	'max_iter': False,
+	'numb_part': False,
+	'numb_features': False,
+	'numb_clusters': False,
+	'cov_type': False,
+	'numIterations': False,
+	'aff': False,
+	'link': False}
+	
+	resultados = 0
+	parameters = []
+	hommie = '../'
+	
+	representation = representation_technic[0]
+	input_dictionary['representation'] = representation
+	
+	for cluster in cluster_technic:
+		input_dictionary['cluster'] = cluster
+		for vocab_size in vocab_sizes:
+			input_dictionary['vocab_size'] = vocab_size      #c v
+			for numb_clusters in numb_clusters_s:
+				input_dictionary['numb_clusters'] = numb_clusters
+				############
+				if cluster == "agglomerative":
+					for link in links:
+						input_dictionary['link'] = link
+						for aff in affs:
+							if link == "ward" and aff != "euclidean":
+								continue
+							else:
+								input_dictionary['aff'] = aff                
+								for caso in casos:
+								input_dictionary['caso'] = caso
+								for scaler in scalers:
+								input_dictionary['scaler'] = scaler
+								input_dictionary['resultados'] = resultados    
+								parameters.append(input_dictionary.copy())                            
+							
+								file = open('../variables.txt', 'wb')
+								pickle.dump(input_dictionary, file)
+								file.close()
+								os.system('python ../mainapp.py')
+								resultados = resultados + 1 
+				############
+				if cluster == "GMM":
+					for cov_type in cov_types:
+						input_dictionary['cov_type'] = cov_type             
+						for caso in casos:
+							input_dictionary['caso'] = caso
+							for scaler in scalers:
+								if scaler == "standar":
+									continue
+								else:
+									input_dictionary['scaler'] = scaler
+									input_dictionary['resultados'] = resultados  
+									parameters.append(input_dictionary.copy())     
+					
+				
+									file = open('../variables.txt', 'wb')
+									pickle.dump(input_dictionary, file)
+									file.close()
+									os.system('python ../mainapp.py')
+									resultados = resultados + 1 
+				############
+				if cluster == "Kmeans":
+					for numIterations in numIterations_s:
+						input_dictionary['numIterations'] = numIterations              
+						for caso in casos:
+							input_dictionary['caso'] = caso
+							for scaler in scalers:
+								input_dictionary['scaler'] = scaler
+								input_dictionary['resultados'] = resultados      
+								parameters.append(input_dictionary.copy())                              
+	
+								file = open('../variables.txt', 'wb')
+								pickle.dump(input_dictionary, file)
+								file.close()
+								os.system('python ../mainapp.py')
+								resultados = resultados + 1 
+					
+	
+	
+	parameters = pd.DataFrame(parameters)
+	
+	file = open(hommie + 'results/' + 'c_v_parameters.txt', 'wb')
+	pickle.dump(parameters, file)
+	file.close()
+	
+	\end{lstlisting}
+	
+	
+	
+	\subsection{Pruebas de TFI-DF}
+	\begin{lstlisting}[language=Python, 
+	caption = Rutina de pruebas TFI-DF,
+	label={lst:pruebasTfIdf}]
+	
+	import pandas as pd
+	import pickle
+	import os
+	
+	representation_technic = ["CountVectorizer","Word2Vec","TFIDF"]
+	cluster_technic = ["GMM","Kmeans","agglomerative"]
+	scalers =  ['minmax', 'standar', 'none']
+	casos = ["caso1", "caso2", "caso3", "caso4"]
+	
+	#tf_idf
+	numb_features_s  = [200,400,800]
+	
+	#ALL Clusters
+	numb_clusters_s = [20,22,24,26,28,30,32,34,36]
+	#agglomerative
+	affs = ['euclidean']
+	links = ['ward']
+	#g_m_m
+	cov_types = ['full', 'diag', 'spherical']
+	#k_means
+	numIterations_s = [100]
+	
+	input_dictionary = {'representation': False,
+	'cluster': False,
+	'caso': False,
+	'scaler': False,
+	'resultados': False,
+	'vocab_size': False,
+	'vector_size': False,
+	'min_count': False,
+	'max_s_l': False,
+	'max_iter': False,
+	'numb_part': False,
+	'numb_features': False,
+	'numb_clusters': False,
+	'cov_type': False,
+	'numIterations': False,
+	'aff': False,
+	'link': False}
+	
+	resultados = 0
+	parameters = []
+	hommie = '../'
+	
+	representation = representation_technic[2]
+	input_dictionary['representation'] = representation
+	
+	for cluster in cluster_technic:
+		input_dictionary['cluster'] = cluster
+		for numb_features in numb_features_s:
+			input_dictionary['numb_features'] = numb_features      #tf_idf
+			for numb_clusters in numb_clusters_s:
+				input_dictionary['numb_clusters'] = numb_clusters
+				############
+				if cluster == "agglomerative":
+					for link in links:
+						input_dictionary['link'] = link
+						for aff in affs:
+							if link == "ward" and aff != "euclidean":
+								continue
+							else:
+								input_dictionary['aff'] = aff                
+								for caso in casos:
+									input_dictionary['caso'] = caso
+									for scaler in scalers:
+										input_dictionary['scaler'] = scaler
+										input_dictionary['resultados'] = resultados    
+										parameters.append(input_dictionary.copy())                            
+										
+										file = open('../variables.txt', 'wb')
+										pickle.dump(input_dictionary, file)
+										file.close()
+										os.system('python ../mainapp.py')
+										resultados = resultados + 1 
+				############
+				if cluster == "GMM":
+					for cov_type in cov_types:
+						input_dictionary['cov_type'] = cov_type             
+						for caso in casos:
+							input_dictionary['caso'] = caso
+							for scaler in scalers:
+								if scaler == "standar":
+									continue
+								else:
+									input_dictionary['scaler'] = scaler
+									input_dictionary['resultados'] = resultados  
+									parameters.append(input_dictionary.copy())     
+									
+									
+									file = open('../variables.txt', 'wb')
+									pickle.dump(input_dictionary, file)
+									file.close()
+									os.system('python ../mainapp.py')
+									resultados = resultados + 1 
+				############
+				if cluster == "Kmeans":
+					for numIterations in numIterations_s:
+						input_dictionary['numIterations'] = numIterations              
+						for caso in casos:
+							input_dictionary['caso'] = caso
+							for scaler in scalers:
+								input_dictionary['scaler'] = scaler
+								input_dictionary['resultados'] = resultados      
+								parameters.append(input_dictionary.copy())                              
+								
+								file = open('../variables.txt', 'wb')
+								pickle.dump(input_dictionary, file)
+								file.close()
+								os.system('python ../mainapp.py')
+								resultados = resultados + 1 
+	
+	
+	
+	parameters = pd.DataFrame(parameters)
+	
+	file = open(hommie + 'results/' + 'tf_idf_parameters.txt', 'wb')
+	pickle.dump(parameters, file)
+	file.close()
+	
+	
+	\end{lstlisting}
+
+
+	\subsection{Pruebas de Word to Vec}
+	\begin{lstlisting}[language=Python, 
+	caption = Rutina de pruebas Word2Vec,
+		label={lst:pruebasW2V}]
+	
+	import pandas as pd
+	import pickle
+	import os
+	
+	representation_technic = ["CountVectorizer","Word2Vec","TFIDF"]
+	cluster_technic = ["GMM","Kmeans","agglomerative"]
+	scalers =  ['minmax', 'standar', 'none']
+	casos = ["caso1", "caso2", "caso3", "caso4"]
+	
+	#word_2_vec
+	vector_sizes = [200,400,800]
+	min_counts = [5]
+	max_s_ls = [1000]
+	max_iters = [1]
+	numb_parts = [5]
+	
+	#ALL Clusters
+	numb_clusters_s = [20,22,24,26,28,30,32,34,36]
+	#agglomerative
+	affs = ['euclidean']
+	links = ['ward']
+	#g_m_m
+	cov_types = ['full', 'diag', 'spherical']
+	#k_means
+	numIterations_s = [100]
+	
+	input_dictionary = {'representation': False,
+	'cluster': False,
+	'caso': False,
+	'scaler': False,
+	'resultados': False,
+	'vocab_size': False,
+	'vector_size': False,
+	'min_count': False,
+	'max_s_l': False,
+	'max_iter': False,
+	'numb_part': False,
+	'numb_features': False,
+	'numb_clusters': False,
+	'cov_type': False,
+	'numIterations': False,
+	'aff': False,
+	'link': False}
+	
+	resultados = 0
+	parameters = []
+	hommie = '../'
+	
+	representation = representation_technic[1]
+	input_dictionary['representation'] = representation
+	
+	for cluster in cluster_technic:
+		input_dictionary['cluster'] = cluster    
+		for vector_size in vector_sizes:
+			input_dictionary['vector_size'] = vector_size        #w 2 v
+			for min_count in min_counts:
+				input_dictionary['min_count'] = min_count            #w 2 v
+				for max_s_l in max_s_ls:
+					input_dictionary['max_s_l'] = max_s_l                #w 2 v
+					for max_iter in max_iters:
+						input_dictionary['max_iter'] = max_iter              #w 2 v
+						for numb_part in numb_parts:
+							input_dictionary['numb_part'] = numb_part            #w 2 v
+							for numb_clusters in numb_clusters_s:
+								input_dictionary['numb_clusters'] = numb_clusters
+								########################
+								if cluster == "agglomerative":
+									for link in links:
+										input_dictionary['link'] = link
+										for aff in affs:
+											if link == "ward" and aff != "euclidean":
+												continue
+											else:
+												input_dictionary['aff'] = aff    
+												for caso in casos:
+												input_dictionary['caso'] = caso
+												for scaler in scalers:
+												input_dictionary['scaler'] = scaler
+												input_dictionary['resultados'] = resultados
+												parameters.append(input_dictionary.copy())
+												
+												file = open('../variables.txt', 'wb')
+												pickle.dump(input_dictionary, file)
+												file.close()
+												os.system('python ../mainapp.py')
+												resultados = resultados + 1
+								########################
+								if cluster == "GMM":
+									for cov_type in cov_types:
+										input_dictionary['cov_type'] = cov_type            
+										for caso in casos:
+											input_dictionary['caso'] = caso
+											for scaler in scalers:
+												input_dictionary['scaler'] = scaler
+												input_dictionary['resultados'] = resultados
+												parameters.append(input_dictionary.copy())
+												
+												file = open('../variables.txt', 'wb')
+												pickle.dump(input_dictionary, file)
+												file.close()
+												os.system('python ../mainapp.py')
+												resultados = resultados + 1 
+								########################
+								if cluster == "Kmeans":
+									for numIterations in numIterations_s:
+										input_dictionary['numIterations'] = numIterations              
+										for caso in casos:
+											input_dictionary['caso'] = caso
+											for scaler in scalers:    
+												input_dictionary['scaler'] = scaler
+												input_dictionary['resultados'] = resultados
+												parameters.append(input_dictionary.copy())
+												
+												file = open('../variables.txt', 'wb')
+												pickle.dump(input_dictionary, file)
+												file.close()
+												os.system('python ../mainapp.py')
+												resultados = resultados + 1 
+	
+	
+	
+	parameters = pd.DataFrame(parameters)
+	
+	file = open(hommie + 'results/' + 'w_2_v_parameters.txt', 'wb')
+	pickle.dump(parameters, file)
+	file.close()
+	
+	\end{lstlisting}
+	
+	
+	
+	\subsection{ Clase Model}
+	\begin{lstlisting}[language=Python, caption= Clase model]
+	from analisys.loads import Loader
+	from analisys.preprocessings import Preprocessing
+	from analisys.representations import Representation
+	from analisys.clusters import Cluster
+	from analisys.evaluations import Evaluator
+	
+	class Model():
+	
+		def __init__(self):
+			print("Escogiendo el modelo")
+		
+		def representation_selector(self, documents, represent, **variables):
+		
+			if variables["representation"] == "CountVectorizer":
+				representation_results = represent.count_vectorizer(documents, **variables)
+			elif variables["representation"] == "Word2Vec":
+				representation_results = represent.word_2_vec(documents, **variables)
+			elif variables["representation"] == "TFIDF":
+				representation_results = represent.tf_idf(documents, **variables)
+			else:
+				representation_results = 0
+				print("La representacion " + variables["representation"] + " no esta disponible")
+			
+			return(representation_results)
+		
+		
+		def cluster_selector(self, clust, sqlContext, representation_results,  **variables):
+		
+			if variables["cluster"] == "GMM":
+				clu = clust.g_m_m(representation_results, sqlContext, **variables)
+			elif variables["cluster"] == "Kmeans":
+				clu = clust.k_means(representation_results, sqlContext, **variables)
+			elif variables["cluster"] == "agglomerative":
+				clu = clust.agglomerative(representation_results, sqlContext, **variables)
+			else:
+				clu = 0
+				print("El cluster " + variables["cluster"] + " no esta disponible")
+			
+			return(clu)
+		
+		
+		
+		def switcher(self, documentsPath, **variables):
+		
+			data_load = Loader()
+			preprocesses = Preprocessing()
+			represent = Representation()
+			clust = Cluster()
+			evaluate = Evaluator() 
+			
+			sc,sqlContext = data_load.context_loader()
+			print("spark version: ", sc.version)
+			
+			documents = data_load.leyes_loader(sc,sqlContext, documentsPath)
+			
+			test_case = data_load.test_cases_loader(variables["caso"])
+			documents = preprocesses.data_preprocess( test_case, documents, sc, sqlContext)
+			
+			representation_results = self.representation_selector(documents, represent, **variables)
+			
+			clu = self.cluster_selector(clust, sqlContext, representation_results, **variables)
+			
+			
+			
+			if (representation_results != 0) or (clu != 0):
+				matrix, report, kw_match, clst_match = evaluate.test_case_evaluator(clu)
+			else:
+				pass
+			
+			return(clu.prediction, matrix, report, kw_match, clst_match)
+		\end{lstlisting}
+		
+		
+		
+		
+		\subsection{ Clase Loads}
+		\begin{lstlisting}[language=Python, 
+		caption= Clase loads,
+		label={lst:claseLoads}]
+		
+		from pyspark.sql import SQLContext
+				from pyspark import  SparkContext, SparkConf
+				
+				
+				class Loader():
+				    
+				    def \_\_init\_\_(self):
+				        print("preparando La carga de datos")
+				        
+				    def context\_loader(self):
+				        print("Cargando el spark context")
+				        
+				        conf = SparkConf().setAppName("Tesis")
+				        conf = (conf.setMaster('local[*]')
+				                .set('spark.executor.memory', '4G')
+				                .set('spark.driver.memory', '45G')
+				                .set('spark.driver.maxResultSize', '10G'))
+				        sc = SparkContext.getOrCreate(conf=conf)
+				        
+				        \#sc=SparkContext.getOrCreate()
+				        sqlContext = SQLContext(sc)
+				        
+				        return(sc,sqlContext)
+				    
+				    def leyes\_loader(self, sc,sqlContext, documentsPath):
+				        print("Cargando las leyes")
+				        documents = sqlContext.read.format("csv").option("header", "true").load(documentsPath)
+				        return(documents)
+				
+				    
+				    def test\_cases\_loader(self, test\_case):
+				        print("Cargando los casos de prueba")
+				        def caso1():
+				            l = ['grupos originarios',
+				            'grupo etnico',
+				            'grupos etnicos',
+				            'indigenas',
+				            'pueblos indigenas',
+				            'pueblos tribales',
+				            'pueblos indios',
+				            'Poblaciones Indigenas y Tribales',
+				            'comunidades',
+				            'comunidades indigena',
+				            'comunidades',
+				            'pueblos originarios']
+				            return(l)
+				
+				        def caso2():
+				            l = ['Libre determinacion',
+				            'autonomia',
+				            'autoregulacion',
+				            'propios sistemas normativos',
+				            'leyes',
+				            'practicas tradicionales',
+				            'practicas comunitarias']
+				
+							return(l)
+				
+				        def caso3():
+				            l = ['Acta Constitucional',
+				                 'Carta constitucional',
+				                 'Carta federal',
+				                 'Carta magna',
+				                 'Codigo fundamental',
+				                 'Codigo politico',
+				                 'Codigo supremo',
+				                 'Ley fundamental',
+				                 'Ley suprema de toda la Union',
+				                 'Norma fundamental',
+				                 'Norma primaria',
+				                 'Norma suprema',
+				                 'Texto fundamenta']
+				            return(l)
+				
+				        def caso4():
+				            l = ['Derechos de la persona humana',
+				                 'Derechos del hombre',
+				                 'Derechos esenciales del hombre',
+				                 'Derechos impl\textbackslash\{\}'icitos',
+				                 'Derechos individuales',
+				                 'Derechos innatos',
+				                 'Derechos morales',
+				                 'Derechos naturales',
+				                 'Derechos originales',
+				                 'Derechos universales',
+				                 'Derechos fundamentales',
+				                 'Derechos subjetivos',
+				                 'Principio de dignidad humana',
+				                 'Principio pro persona',
+				                 'Tratados internacionales']
+				            return(l)
+				
+				        def test\_case\_switcher(test\_case):
+				            switcher = \{
+				            'caso1': caso1(),
+				            'caso2': caso2(),
+				            'caso3': caso3(),
+				            'caso4': caso4()
+				            \}
+				            return (switcher.get(test\_case,"Oops! Invalid Option"))
+				        
+				        return(test\_case\_switcher(test\_case))
+	\end{lstlisting}		
+	
+	\subsection{Clase Preprocessings}
+	\begin{lstlisting}[language=Python, caption = Clase Preprocessings]
+	from pyspark.sql.functions import split, lower, col, concat, array, lit, udf
+	from pyspark.sql import types as T
+	from pyspark.ml.feature import NGram
+	
+	class Preprocessing():
+	    
+	    def __init__(self):
+	        print("preparando el pre procesamiento de los datos")
+	        
+	    
+	    def data_case_mix(self, test_case, documents, sc, sqlContext):
+	        case = ' '.join(test_case)
+	        vals = sc.parallelize([['9999','custom','1',case,case,case]])
+	        Nrow = sqlContext.createDataFrame(vals, documents.schema)
+	        print('Caso de prueba cargado')
+	        documents = documents.union(Nrow)
+	        return(documents)
+	    
+	    def clean_data(self, documents):
+	        documents = documents.withColumn("text_splitted", split(lower(col("articuloLimpio")), " "))
+	        print("Datos limpios")
+	        return(documents)
+	    
+	    def ngram_builder(self, documents):
+	        documents = NGram(n=2, inputCol="text_splitted", outputCol="ngrams2").transform(documents)
+	        documents = NGram(n=3, inputCol="text_splitted", outputCol="ngrams3").transform(documents)
+	        documents = documents.withColumn("text_splitted", concat(col("text_splitted"),col("ngrams2"),col("ngrams3")))
+	        print('Ngramas calculados')
+	        return(documents)
+	    
+	    def test_case_flag(self, documents, test_case):
+	        
+	        def containsAny(string, array):
+	            if len(string) == 0:
+	                return False
+	            else:
+	                return (any(word in string for word in array))
+	        
+	        contains_udf = udf(containsAny, T.BooleanType())
+	        documents =  documents.withColumn("keyword_match", contains_udf(col("text_splitted"), array([lit(i) for i in test_case])))
+	        return(documents)
+	    
+	    
+	    def data_preprocess(self, test_case, documents, sc, sqlContext):
+	        documents = self.data_case_mix(test_case, documents, sc, sqlContext)
+	        documents = documents.withColumn("text_splitted", split(lower(col("articuloLimpio")), " "))
+	        documents = self.clean_data(documents)
+	        documents = self.ngram_builder(documents)
+	        documents = self.test_case_flag(documents, test_case)
+	        return(documents)
+	\end{lstlisting}
+	
+		
+	\subsection{ Clase Representations}	
+	\begin{lstlisting}[language=Python, caption = Clase Representations]
+	from pyspark.ml.feature import CountVectorizer
+	from pyspark.ml.feature import Word2Vec
+	from pyspark.ml.feature import HashingTF, IDF
+	
+	class Representation():
+	    
+	    def __init__(self):
+	        print("preparando la representaci\'on")
+	    
+	        
+	 ##############################################################################
+	    def count_vectorizer(self, documents, **variables):
+	        print("representando la count_vectorizer")
+	        cv = CountVectorizer(inputCol = "text_splitted", 
+	                             outputCol = "features", 
+	                             vocabSize = variables["vocab_size"])
+	        model = cv.fit(documents)
+	        result = model.transform(documents)
+	        return(result)
+	 ##############################################################################
+	
+	    def word_2_vec(self, documents, **variables):
+	        print("representando la  word_2_vec")
+	        word2Vec = Word2Vec(vectorSize = variables["vector_size"], 
+	                            minCount = variables["min_count"],
+	                            maxSentenceLength = variables["max_s_l"],
+	                            maxIter = variables["max_iter"], 
+	                            numPartitions = variables["numb_part"],
+	                            inputCol="text_splitted", 
+	                            outputCol="features")
+	        
+	        model = word2Vec.fit(documents)
+	        result = model.transform(documents)
+	        return(result)
+	 ##############################################################################
+	
+	    def tf_idf(self, documents, **variables):
+	        print("representando la  tf_idf")
+	        hashingTF = HashingTF(inputCol = "text_splitted", 
+	                              outputCol = "TF", 
+	                              numFeatures = variables["numb_features"])
+	        
+	        featurizedData = hashingTF.transform(documents)
+	        idf = IDF(inputCol="TF", 
+	                  outputCol="features")#, outputCol="TF-IDF")
+	        
+	        idfModel = idf.fit(featurizedData)
+	        result = idfModel.transform(featurizedData)
+	        return(result)
+	\end{lstlisting}
+	
+	
+	\subsection{ Clase Clusters}
+	\begin{lstlisting}[language=Python, caption = Clase Clusters]
+	from pyspark.ml.clustering import KMeans
+	
+	from sklearn.mixture import GaussianMixture
+	#from pyspark.ml.clustering import PowerIterationclustering
+	from sklearn.cluster import Agglomerativeclustering
+	from pyspark.sql.functions import udf, col
+	from pyspark.sql.types import  DoubleType, IntegerType, ArrayType
+	
+	
+	from pyspark.ml.linalg import Vectors
+	from pyspark.ml.feature import MinMaxScaler
+	from pyspark.ml.feature import StandardScaler
+	from pyspark.ml.feature import Normalizer
+	
+	
+	class Cluster():
+	    
+	    def __init__(self):
+	        print("preparando el cluster")
+	        
+	    def spark_df_2_pandas(self, representation_results):
+	        if representation_results != 0 :
+	                            
+	            indices_udf = udf(lambda vector: vector.indices.tolist(), ArrayType(IntegerType()))
+	            values_udf = udf(lambda vector: vector.toArray().tolist(), ArrayType(DoubleType()))
+	            
+	            """
+	            # https://runawayhorse001.github.io/LearningApacheSpark/manipulation.html
+	            """
+	            predictionsPanDF = representation_results\
+	                .withColumn('indices', indices_udf(col('features')))\
+	                .withColumn('values', values_udf(col('features'))).toPandas()
+	                
+	            X = predictionsPanDF["values"]#.select('values')
+	            X = [i for i in X]
+	            
+	            
+	        else:
+	            predictionsPanDF = 0
+	            X = 0
+	            
+	        return(predictionsPanDF, X)
+	    
+	    
+	
+	    def scaler_loader(self, documents, scaler):
+	        print("Cargando el metodo de normalizacion/escalacion de los datos")
+	        
+	        def min_max_s(documents):
+	            scaler = MinMaxScaler(inputCol="features", outputCol="scaled_features")
+	            scalerModel = scaler.fit(documents)
+	            scaledData = scalerModel.transform(documents)
+	            return (scaledData)
+	        
+	        def standar_s(documents):
+	            scaler = StandardScaler(inputCol="features", outputCol="scaled_features", withStd=True, withMean=False)
+	            scalerModel = scaler.fit(documents)
+	            scaledData = scalerModel.transform(documents)
+	            return(scaledData)
+	        
+	        def taxicab_norm_s(documents):
+	            normalizer = Normalizer(inputCol="features", outputCol="scaled_features", p=1.0)
+	            scaledData = normalizer.transform(documents)
+	            return(scaledData)
+	            
+	        def euclid_norm_s(documents):
+	            normalizer = Normalizer(inputCol="features", outputCol="scaled_features", p=2.0)
+	            scaledData = normalizer.transform(documents)
+	            return(scaledData)
+	        
+	        def none_s(documents):
+	            documents = documents.withColumn("scaled_features", documents["features"])
+	            return(documents)
+	        
+	        def scaler_switcher(scaler, documents):
+	            switcher = {
+	            'minmax' : min_max_s(documents),
+	            'standar': standar_s(documents),
+	            'taxicab': taxicab_norm_s(documents),
+	            'euclid' : euclid_norm_s(documents),
+	            'none'   : none_s(documents)
+	            }
+	            return (switcher.get(scaler,"Oops! Invalid Option"))
+	        
+	        return(scaler_switcher(scaler, documents))
+	    
+	        
+	 ##############################################################################   
+	    def g_m_m(self, representation_results, sqlContext, **variables):
+	        if representation_results != 0 :
+	            if variables["representation"] != "Word2Vec":
+	                predictionsPanDF, X = self.spark_df_2_pandas(representation_results)
+	                
+	                
+	                X = sqlContext.createDataFrame([(i, Vectors.dense(j),) for i,j in enumerate(X)], ["id", "features"])
+	            else:
+	                X = representation_results
+	                predictionsPanDF = representation_results.toPandas()
+	            X = self.scaler_loader(X, variables["scaler"]).toPandas()
+	            X = [i.toArray() for i in X.scaled_features]
+	                
+	                                
+	            clustering = GaussianMixture(n_components = variables["numb_clusters"],
+	                                         covariance_type = variables["cov_type"]).fit(X)
+	            predictionsPanDF["prediction"] = clustering.predict(X)
+	            
+	            if variables["representation"] != "Word2Vec":
+	                predictionsPanDF.drop(["indices","values"],axis=1, inplace=True)
+	            
+	        else:
+	            predictionsPanDF = 0
+	        return(predictionsPanDF)
+	        
+	    
+	    
+	    
+	###############################################################################
+	    def k_means(self, representation_results, sqlContext, **variables):
+	        if representation_results != 0 :
+	            
+	            representation_results = self.scaler_loader(representation_results, variables["scaler"])
+	            
+	            kmeans = KMeans(featuresCol='scaled_features').setMaxIter(variables["numIterations"]).setK(variables["numb_clusters"])
+	            kmeans_model = kmeans.fit(representation_results)
+	            # Make predictions
+	            predictions = kmeans_model.transform(representation_results)
+	            
+	            predictionsPanDF = predictions.toPandas()
+	            
+	            
+	        else:
+	            predictionsPanDF = 0
+	        return(predictionsPanDF)
+	
+	 #############################################################################   
+	    def agglomerative(self, representation_results, sqlContext, **variables):
+	        if representation_results != 0 :
+	            if variables["representation"] != "Word2Vec":
+	                predictionsPanDF, X = self.spark_df_2_pandas(representation_results)
+	                
+	                
+	                X = sqlContext.createDataFrame([(i, Vectors.dense(j),) for i,j in enumerate(X)], ["id", "features"])
+	            else:
+	                X = representation_results
+	                predictionsPanDF = representation_results.toPandas()
+	            X = self.scaler_loader(X, variables["scaler"]).toPandas()
+	            X = [i.toArray() for i in X.scaled_features]
+	            
+	            clustering = Agglomerativeclustering(n_clusters = variables["numb_clusters"],
+	                                                 affinity = variables["aff"],
+	                                                 linkage = variables["link"]).fit(X)
+	            predictionsPanDF["prediction"] = clustering.labels_
+	            
+	            if variables["representation"] != "Word2Vec":
+	                predictionsPanDF.drop(["indices","values"],axis=1, inplace=True)
+	            
+	        else:
+	            predictionsPanDF = 0
+	        return(predictionsPanDF)
+	\end{lstlisting}
+	
+	
+	\subsection{Clase Evaluations}
+	\begin{lstlisting}[language=Python, caption = Clase Evaluations]
+	from sklearn.metrics import classification_report, confusion_matrix
+	
+	
+	
+	class Evaluator():
+	    
+	    def __init__(self):
+	        print("preparando evaluacion de resultados")
+	        
+	    def test_case_evaluator(self, documents):
+	        print("Generando tabla de verdad")
+	        documents_cluster_match = documents[documents.codigoEstado == "custom"].prediction.item()
+	        documents["documents_cluster_match"] = documents.prediction == documents_cluster_match
+	        report = classification_report(documents.keyword_match, documents.documents_cluster_match)
+	        matrix = confusion_matrix(documents.keyword_match, documents.documents_cluster_match)
+	        return(matrix, report, documents.keyword_match, documents.documents_cluster_match)
+	
+	\end{lstlisting}
+	
+	
+	\subsection{Rutina de Visualización de los resultados}
+	\begin{lstlisting}[language=Python, caption = Rutina de Visualización]
+	import pickle
+	import os
+	import pandas as pd
+	import matplotlib.pyplot as plt
+	import numpy as np 
+	import disarray
+	
+	
+	def results_depth_1(model_params, numb_clusters_s):
+	    model_recall_list = []
+	    for nc in numb_clusters_s:
+	        model_c = model_params[model_params.numb_clusters == nc]
+	        tp = model_c.tp.sum()
+	        fn = model_c.fn.sum()
+	        model_recall_list.append(tp/(tp+fn))
+	    return(model_recall_list)
+	
+	
+	def model_plot(params_list, numb_clusters_s, titulus):
+	    for recall_list in params_list:
+	        if recall_list[1] == 0:
+	            labe = 'vocab size ' + str(recall_list[2])
+	            plt.plot(numb_clusters_s, recall_list[0], label=labe)
+	        elif recall_list[1] == 'all':
+	            labe = recall_list[2]
+	            plt.plot(numb_clusters_s, recall_list[0], label=labe)            
+	        else:
+	            labe = 'Scaler ' + recall_list[1] + '; vocab size ' + str(recall_list[2])
+	            plt.plot(numb_clusters_s, recall_list[0], label=labe)        
+	    plt.title(titulus)
+	    plt.ylabel('recall')
+	    plt.xlabel('Numero de clusers')
+	    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+	    plt.show()
+	
+	def tri_plot(model_params, numb_clusters_s, v_sizes, scalers, representacion, clust_model):
+	    if representacion == "c_v":
+	        v_size = "vocab_size"
+	    elif representacion == "tf_idf":
+	        v_size = "numb_features"
+	    else:
+	        v_size = "vector_size"
+	    
+	    ##########################################################################
+	    #model recall integrado 1 grafica
+	    ##########################################################################
+	    
+	    titulus = representacion + " " + clust_model + " integrado todo"
+	    model_recall_list = results_depth_1(model_params, numb_clusters_s)
+	    model_plot([(model_recall_list, 'all', 'all')], numb_clusters_s, titulus)
+	    
+	    ##########################################################################
+	    #model recall integrado por vocab size 3 graficas
+	    ##########################################################################
+	    vs_list = []
+	    for vs in v_sizes:
+	        model_vs = model_params[model_params[v_size] == vs]
+	        recall_list = results_depth_1(model_vs, numb_clusters_s)
+	        vs_list.append((recall_list, 0, vs))   
+	        
+	    titulus = representacion + " " + clust_model + " by vocab size"
+	    model_plot(vs_list, numb_clusters_s, titulus)
+	    
+	    ##########################################################################
+	    #model recall compuesto por vocab size y scaler 9 graficas
+	    ##########################################################################
+	    scl_vs_recall_list = []
+	    for scl in scalers:
+	        model_scl = model_params[model_params.scaler == scl]
+	        for vs in v_sizes:
+	            model_vs = model_scl[model_scl[v_size] == vs]
+	            recall_list = results_depth_1(model_vs, numb_clusters_s)            
+	            scl_vs_recall_list.append((recall_list, scl, vs))
+	                
+	    titulus = representacion + " " + clust_model + " Por scaler y vocab size"
+	    model_plot(scl_vs_recall_list, numb_clusters_s, titulus)
+	    
+	    return(model_recall_list)
+	
+	
+	def model_integrado_plots(representation_param, res, numb_clusters_s, v_sizes, scalers, representacion):
+	    #############################################################################
+	    #METRICAS
+	    #############################################################################
+	    #cm_s confusion matrixes
+	    cm_s = [i[1] for i in res]
+	    metricas = [pd.DataFrame(cm).da.export_metrics() for cm in cm_s]
+	    
+	    x = representation_param.copy()
+	    x["metricas"] = metricas
+	    x["confusion_matrix"] = cm_s
+	    
+	    con_matrix = pd.DataFrame([i[1].ravel() for i in res], columns=["tn", "fp", "fn", "tp"])
+	    
+	    x = pd.concat([x,con_matrix], axis=1)
+	    
+	    
+	    #############################################################################
+	    #AGG
+	    #############################################################################
+	    clust_model = "agglomerative"
+	    agg_params = x[x.cluster == clust_model]
+	    #agg_params = agg_params[['caso', 'scaler', 'resultados',
+	    #       'vocab_size',  'min_count', 'max_s_l', 'max_iter',
+	    #       'numb_part', 'numb_features', 'numb_clusters', 'aff', 'link', 
+	    #       'metricas', 'confusion_matrix', "tn", "fp", "fn", "tp"]]
+	     
+	    agg_params = agg_params.replace(False, np.nan).dropna(axis=1,how="all")
+	    
+	    agg_recall_list = tri_plot(agg_params, numb_clusters_s, v_sizes, scalers, representacion, clust_model)
+	    
+	    #############################################################################
+	    #GMNM
+	    #############################################################################
+	    clust_model = "GMM"
+	    gmm_params = x[x.cluster == clust_model]
+	    #gmm_params = gmm_params[['caso', 'scaler', 'resultados',
+	    #       'vocab_size', 'vector_size', 'min_count', 'max_s_l', 'max_iter',
+	    #       'numb_part', 'numb_features', 'numb_clusters', 'cov_type',
+	    #       'metricas', 'confusion_matrix', "tn", "fp", "fn", "tp"]]
+	     
+	    gmm_params = gmm_params.replace(False, np.nan).dropna(axis=1,how="all")
+	    
+	    gmm_recall_list = tri_plot(gmm_params, numb_clusters_s, v_sizes, scalers, representacion, clust_model)
+	    
+	    #############################################################################
+	    #KMN
+	    #############################################################################
+	    clust_model = "Kmeans"
+	    kmn_params = x[x.cluster == clust_model]
+	    #kmn_params = kmn_params[['caso', 'scaler', 'resultados',
+	    #       'vocab_size', 'vector_size', 'min_count', 'max_s_l', 'max_iter',
+	    #       'numb_part', 'numb_features', 'numb_clusters', 'numIterations', 
+	    #      'metricas', 'confusion_matrix', "tn", "fp", "fn", "tp"]]
+	     
+	    kmn_params = kmn_params.replace(False, np.nan).dropna(axis=1,how="all")
+	    
+	    knn_recall_list = tri_plot(kmn_params, numb_clusters_s, v_sizes, scalers, representacion, clust_model)
+	    
+	    
+	    #############################################################################
+	    #AGG GMM KMN
+	    #############################################################################
+	    
+	    general_list = [(agg_recall_list, 'all', 'agg'),
+	                    (gmm_recall_list, 'all', 'gmm'),
+	                    (knn_recall_list, 'all', 'kmn')]
+	    titulus = "General " + representacion + " AGG GMM KMN "
+	    model_plot(general_list, numb_clusters_s, titulus)
+	    return(agg_recall_list, gmm_recall_list, knn_recall_list)
+	
+	
+	    
+	#############################################################################
+	#DATA LOAD
+	#############################################################################
+	numb_clusters_s = [20,22,24,26,28,30,32,34,36]
+	scalers =  ['minmax', 'standar', 'none']
+	results = '/home/hecvagu/AnacondaProjects/MasterTesis/approach3/results/'
+	#leyes = pd.read_csv("/home/hecvagu/AnacondaProjects/MasterTesis/todasLasLeyes.csv")
+	    
+	#############################################################################
+	#Count Vectorizer
+	#############################################################################
+	
+	vocab_sizes = [200, 400,800]
+	c_v_arr = os.listdir(results + 'c_v')
+	c_v_res = []
+	for i in c_v_arr:
+	    with open(results + 'c_v/' + i , 'rb') as f: 
+	        c_v_res.append(pickle.load(f))
+	
+	with open(results + 'c_v_parameters.txt' , 'rb') as f:
+	    c_v_param = pickle.load(f)
+	
+	c_v_agg, c_v_gmm, c_v_knn = model_integrado_plots(c_v_param, 
+	                                                  c_v_res, 
+	                                                  numb_clusters_s, 
+	                                                  vocab_sizes, 
+	                                                  scalers, 
+	                                                  "c_v")
+	
+	    
+	#############################################################################
+	#TF IDF
+	#############################################################################
+	
+	numb_features_s  = [200,400,800]
+	tf_idf_arr = os.listdir(results + 'tf_idf')
+	tf_idf_res = []
+	for i in tf_idf_arr:
+	    with open(results + 'tf_idf/' + i , 'rb') as f: 
+	        tf_idf_res.append(pickle.load(f))
+	
+	with open(results + 'tf_idf_parameters.txt' , 'rb') as f:
+	    tf_idf_param = pickle.load(f)
+	
+	tf_idf_agg, tf_idf_gmm, tf_idf_knn = model_integrado_plots(tf_idf_param, 
+	                                                  tf_idf_res, 
+	                                                  numb_clusters_s, 
+	                                                  numb_features_s, 
+	                                                  scalers, 
+	                                                  "tf_idf")
+	
+	
+	#############################################################################
+	#Word to Vec
+	#############################################################################
+	
+	vector_size_s  = [200,400,800]
+	w_2_v_arr = os.listdir(results + 'w_2_v')
+	w_2_v_res = []
+	for i in w_2_v_arr:
+	    with open(results + 'w_2_v/' + i , 'rb') as f: 
+	        w_2_v_res.append(pickle.load(f))
+	
+	with open(results + 'w_2_v_parameters.txt' , 'rb') as f:
+	    w_2_v_param = pickle.load(f)
+	
+	w_2_v_agg, w_2_v_gmm, w_2_v_knn = model_integrado_plots(w_2_v_param, 
+	                                                           w_2_v_res, 
+	                                                           numb_clusters_s, 
+	                                                           vector_size_s, 
+	                                                           scalers, 
+	                                                           "w_2_v")
+	
+	
+	general_list = [(c_v_agg, 'all', 'c_v_agg'),
+	                (c_v_gmm, 'all', 'c_v_gmm'),
+	                (c_v_knn , 'all', 'c_v_kmn'),
+	                (tf_idf_agg, 'all', 'tf_idf_agg'),
+	                (tf_idf_gmm, 'all', 'tf_idf_gmm'),
+	                (tf_idf_knn , 'all', 'tf_idf_kmn'),
+	                (w_2_v_agg, 'all', 'w_2_v_agg'),
+	                (w_2_v_gmm, 'all', 'w_2_v_gmm'),
+	                (w_2_v_knn , 'all', 'w_2_v_kmn')]
+	titulus = "General All models "
+	model_plot(general_list, numb_clusters_s, titulus)
+	\end{lstlisting}
+	
+	
+	
+	\end{document}
